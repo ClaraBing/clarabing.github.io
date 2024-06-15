@@ -1,0 +1,26 @@
+    <!--
+      <!-- Workshop -->
+      <div class="container">
+        <div>
+        <div class="row mb-6">
+        <div class="co6-14 pt-3  px-2 pb-4   bubble offset-xl-1 col-xl-10">
+        <h4>Workshop</h4>
+        <!--<h5 class="pt-2 pb-1">Video Understanding</h5>-->
+
+          <!-- ML4H 18-->
+          <div class="publication media">
+          <img src="pics/ML4H18.png" class="publogo img-fluid float-left rounded g" width="120">
+          <div class="media-body">
+          <p><strong>Descriptive Analysis of ICU Patient Mobilization from Depth Videos</strong><br>
+                                  Laëtitia Shao*, Zaid Nabulsi*, Ruchir Rastogi*, <strong>Bingbin Liu</strong>, Francesca Rinaldo, Serena Yeung, N. Lance Downing, William Beninati, Arnold Milstein, Li Fei-Fei<br>
+          <em>Machine Learning for Health (ML4H) workshop, </em>2018<br>
+          </p>
+          </div>
+
+        </div>
+        </div>
+        </div>
+      </div>
+    -->
+
+    
