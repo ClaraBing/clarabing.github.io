@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bingbin & Tim's Connections</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(4, 120px);
+      grid-template-rows: repeat(4, 60px);
+      gap: 10px;
+    }
+    .cell {
+      background: #ffffff;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 16px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cell.selected {
+      border-color: #333;
+      background: #e0e0e0;
+    }
+    #controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    button {
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+    #reset {
+      background: #ff6666;
+      color: white;
+    }
+    #submit {
+      background: #4CAF50;
+      color: white;
+    }
+    #found {
+      margin-top: 20px;
+      width: 50%;
+    }
+    #found div {
+      color: white;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  </style>
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <h1>Bingbin & Tim's "Connections"</h1>
+  <h3>Find 4 groups of 4 words!</h3>
+  <p>Select exactly 4 words, then click "Submit Group" to check your group :)</p>
+  <div id="grid"></div>
+  <div id="controls">
+    <button id="submit">Submit Group</button>
+    <button id="reset">Reset Game</button>
+    <span id="status"></span>
+  </div>
+  <div id="found"><h3>Found Clues:</h3></div>
+  <script>
+    // Configure confetti to use our canvas
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const myConfetti = confetti.create(confettiCanvas, { resize: true });
+
+    const words = [
+      'CRIMP', 'KERNEL', 'BOSTON', 'FLOP',
+      'GOLDEN', 'CAMPUS', 'HELLO', 'MEMORY',
+      'FLAG', 'DISK', 'FLASH', 'GRAVITY',
+      'BULL', 'LAB', 'STARS', 'RAM'
+    ];
+    const groundTruth = [
+      { name: 'Dog-breed words', words: ['BOSTON','GOLDEN','LAB','BULL'] },
+      { name: 'Rock-climbing jargon', words: ['CRIMP','CAMPUS','FLAG','FLASH'] },
+      { name: 'Core computing terms', words: ['KERNEL','DISK','RAM','FLOP'] },
+      { name: 'Musical show-tunes', words: ['HELLO','MEMORY','GRAVITY','STARS'] }
+    ];
+    const colors = ['#FFD700', '#80BF1F', '#87CEEB', '#DDA0DD'];
+    let currentGroup = 0;
+    let selected = [];
+    const usedGroups = new Set();
+    const grid = document.getElementById('grid');
+    const status = document.getElementById('status');
+    const foundDiv = document.getElementById('found');
+    const totalGroups = groundTruth.length;
+
+    function updateStatus() {
+      status.textContent = `Groups found: ${currentGroup}`;
+    }
+
+    function resetGame() {
+      currentGroup = 0;
+      selected = [];
+      usedGroups.clear();
+      updateStatus();
+      foundDiv.innerHTML = '<h3>Found Clues:</h3>';
+      document.querySelectorAll('.cell').forEach(cell => {
+        cell.dataset.group = '';
+        cell.textContent = cell.dataset.word;
+        cell.style.background = '';
+        cell.classList.remove('selected');
+      });
+    }
+
+    function cellClicked(e) {
+      const cell = e.target;
+      const word = cell.dataset.word;
+      if (cell.dataset.group) return;
+      if (cell.classList.contains('selected')) {
+        cell.classList.remove('selected');
+        selected = selected.filter(w => w !== word);
+      } else {
+        if (selected.length < 4) {
+          cell.classList.add('selected');
+          selected.push(word);
+        }
+      }
+    }
+
+    function submitGroup() {
+      if (selected.length !== 4) {
+        alert('Please select exactly 4 words before submitting.');
+        return;
+      }
+      let foundIndex = -1;
+      for (let i = 0; i < totalGroups; i++) {
+        if (groundTruth[i].words.every(w => selected.includes(w))) {
+          foundIndex = i;
+          break;
+        }
+      }
+      if (foundIndex === -1) {
+        alert('Incorrect group. Try again.');
+        selected.forEach(word => {
+          document.querySelector(`[data-word="${word}"]`).classList.remove('selected');
+        });
+        selected = [];
+        return;
+      }
+      if (usedGroups.has(foundIndex)) {
+        alert('You already found this group!');
+        selected.forEach(word => {
+          document.querySelector(`[data-word="${word}"]`).classList.remove('selected');
+        });
+        selected = [];
+        return;
+      }
+      const color = colors[foundIndex];
+      // Color words
+      selected.forEach(word => {
+        const c = document.querySelector(`[data-word="${word}"]`);
+        c.dataset.group = foundIndex;
+        c.style.background = color;
+        c.classList.remove('selected');
+      });
+      // Show clue
+      const clueEl = document.createElement('div');
+      clueEl.textContent = groundTruth[foundIndex].name;
+      clueEl.style.background = color;
+      foundDiv.appendChild(clueEl);
+      usedGroups.add(foundIndex);
+      currentGroup++;
+      updateStatus();
+      selected = [];
+      // If all groups found, trigger confetti
+      if (currentGroup === totalGroups) {
+        myConfetti({ particleCount: 200, spread: 100 });
+      }
+    }
+
+    function init() {
+      words.forEach(word => {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.textContent = word;
+        cell.dataset.word = word;
+        cell.addEventListener('click', cellClicked);
+        grid.appendChild(cell);
+      });
+      document.getElementById('submit').addEventListener('click', submitGroup);
+      document.getElementById('reset').addEventListener('click', resetGame);
+      updateStatus();
+    }
+
+    init();
+  </script>
+</body>
+</html>
