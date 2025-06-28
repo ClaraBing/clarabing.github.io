@@ -25,16 +25,16 @@
       margin: 5px 0;
     }
 
-    /* Responsive grid: auto-fit cells between 80px and 1fr */
+    /* ========== DESKTOP: exactly 4 fixed-width columns ========== */
     #grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      grid-template-columns: repeat(4, 120px);
       grid-auto-rows: 60px;
-      gap: 8px;
+      gap: 10px;
+      justify-content: center;
       width: 100%;
-      max-width: 480px;
-      margin: 10px 0;
     }
+
     .cell {
       background: #ffffff;
       border: 2px solid #ccc;
@@ -52,14 +52,12 @@
       background: #e0e0e0;
     }
 
-    /* Controls stack on narrow screens */
     #controls {
       margin-top: 15px;
       display: flex;
       gap: 10px;
       align-items: center;
       width: 100%;
-      max-width: 480px;
       justify-content: center;
     }
     button {
@@ -74,11 +72,9 @@
     #reset { background: #ff6666; color: white; }
     #submit { background: #4CAF50; color: white; }
 
-    /* Found clues container */
     #found {
       margin-top: 20px;
       width: 100%;
-      max-width: 480px;
     }
     #found h3 {
       margin-bottom: 6px;
@@ -92,7 +88,6 @@
       text-align: center;
     }
 
-    /* Confetti canvas covers full viewport */
     canvas {
       position: absolute;
       top: 0;
@@ -102,8 +97,12 @@
       pointer-events: none;
     }
 
-    /* Small-screen tweaks */
+    /* ========== MOBILE OVERRIDE: auto-fit between 80px and 1fr ========== */
     @media (max-width: 480px) {
+      #grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 8px;
+      }
       .cell { font-size: 14px; }
       #controls { flex-direction: column; }
       button { font-size: 16px; padding: 10px; }
@@ -158,7 +157,7 @@
       updateStatus();
       foundDiv.innerHTML = '<h3>Found Clues:</h3>';
       document.querySelectorAll('.cell').forEach(cell => {
-        cell.dataset.group = '';
+        delete cell.dataset.group;
         cell.textContent = cell.dataset.word;
         cell.style.background = '';
         cell.classList.remove('selected');
@@ -180,7 +179,7 @@
         alert('Please select exactly 4 words before submitting.');
         return;
       }
-      let foundIndex = groundTruth.findIndex(g =>
+      const foundIndex = groundTruth.findIndex(g =>
         g.words.every(w => selected.includes(w))
       );
       if (foundIndex < 0) {
