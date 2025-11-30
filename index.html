@@ -1,55 +1,77 @@
-
 <!doctype html>
-<html>
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <title>Bingbin Liu</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bingbin Liu</title>
+    <meta name="description" content="Personal website of Bingbin Liu, Postdoc Research Fellow at Kempner Institute, Harvard University.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap" rel="stylesheet">
 
     <style>
-        li div { text-align:right; }
-        li div span { float:left; }
-        .publogo {
-            margin-right: 10px;
+        
+        :root {/* --- COLOR CONFIGURATION --- */
+            /* CHANGE THIS RGB VALUE to your preferred color */
+            /* Current: Blue (59, 130, 246) */
+            /* Example: Teal (0, 128, 128) | Purple (147, 51, 234) */
+            --main-rgb: 59, 130, 246;
+            --main-skyblue: #87ceeb;
+            --main-blue: #3baaee;
+            --main-darkblue: #2170b5;
         }
         
-        .publication {
-            padding-left: 0px;
-            padding-top: 10px;
-            margin-bottom: 10px;
+        /* Custom Text Color Class */
+        .text-primary {
+            color: var(--main-primary);
+            transition: opacity 0.2s;
         }
-		
-        .publication strong a {
-            color: #000;
-            text-decoration: none;
+        .text-primary:hover {
+            opacity: 0.75; /* Fades slightly on hover */
+        }
+        .text-author {
+            color: var(--main-blue);
+            transition: opacity 0.2s;
+        }
+        .text-author:hover {
+            opacity: 0.75; /* Fades slightly on hover */
+        }
+        .text-link{
+          color: var(--main-darkblue);
+          transition: opacity 0.2s;
+        }
+        .text-link:hover {
+          opacity: 0.75; /* Fades slightly on hover */
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
         }
         
-        .publication strong a:hover {
-            text-decoration: underline;
+        /* Sidebar Link Active State */
+        .nav-link.active {
+            background-color: #e2e8f0; /* slate-200 */
+            color: #1a202c; /* gray-900 */
+            font-weight: 700;
+            border-right: 4px solid #3b82f6; /* blue-500 */
         }
         
-        .publication .links a {
-            margin-right: 15px;
+        /* Offset for scroll anchor so headers aren't hidden behind margins */
+        section {
+            scroll-margin-top: 2rem;
         }
-        
-        .press {
-            display: inline-block;
-            padding: 5px;
-            height: 70px;
-        }
-        .press a img {
-            border: 3px solid #fff;
-            border-ra truncated 1065bytes...
     </style>
 
-    <!-- <link rel="shortcut icon" href="/files/assets/images/favicon.ico"> -->
-    <link href="./hover.css" rel="stylesheet">
-
-
+    <!-- Google Analytics -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script type="text/javascript">
         (function(i, s, o, g, r, a, m) {
@@ -65,391 +87,602 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-1592615-30', 'auto', 'webwwwall');
-        ga('webwwwall. truncated 420bytes...');
+        ga('send', 'pageview');
     </script>
-
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800 flex flex-col md:flex-row min-h-screen">
 
-    <div class="topbar">
-        <div class="container">
-            <div>
-				<div class="row mt-0">
-					<br> <!--Empty; for layout only. -->
-				</div>
-                <div class="row mt-0">
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 p-0 pl-0 pl-sm-4 offset-xl-1 col-xl-3" height='20%'>
-                        <img src="pics/bingbin_Oct_2025.jpg" id="me" itemprop="photo" class="float-left img-fluid" width="90%">
+    <!-- LEFT SIDEBAR (Sticky) -->
+    <!-- On mobile, this is static. On desktop (md:), it becomes sticky to the top of the viewport. -->
+    <aside class="w-full md:w-80 bg-white shadow-lg flex-shrink-0 flex flex-col z-20 md:h-screen md:sticky md:top-0">
+        <div class="p-8 flex flex-col items-center text-center overflow-y-auto">
+            
+            <!-- Profile Image -->
+            <div class="relative w-40 h-40 mb-6 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm">
+                <img src="pics/bingbin_Oct_2025.jpg" 
+                     alt="Bingbin Liu" 
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Bingbin+Liu&size=256&background=random';">
+            </div>
+
+            <!-- Name & Title -->
+            <h1 class="text-2xl font-bold text-gray-900 mb-1">Bingbin Liu</h1>
+            <p class="text-sm text-gray-600 mb-4">Postdoc Research Fellow<br>Kempner Institute, Harvard</p>
+
+            <!-- Links -->
+            <div class="flex flex-wrap justify-center gap-3 text-sm mb-6">
+                <a href="files/CV_Bingbin_LIU_Feb_2024.pdf" target="_blank" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 transition">
+                    <i class="fas fa-file-alt mr-1"></i> CV
+                </a>
+                <a href="https://scholar.google.com/citations?user=2ud06rQAAAAJ&hl=en" target="_blank" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 transition">
+                    <i class="fas fa-graduation-cap mr-1"></i> Google Scholar
+                </a>
+            </div>
+            
+            <div class="text-xs text-gray-500 mb-6">
+                <i class="fas fa-envelope mr-1"></i> bliu [at] g [dot] harvard [dot] edu
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="w-full">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#about" class="nav-link active w-full text-left px-6 py-3 rounded-lg hover:bg-gray-50 transition flex items-center text-gray-600">
+                            <i class="fas fa-paw w-6 text-center mr-3 text-gray-400"></i> About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#research" class="nav-link w-full text-left px-6 py-3 rounded-lg hover:bg-gray-50 transition flex items-center text-gray-600">
+                            <i class="fas fa-book w-6 text-center mr-3 text-gray-400"></i> Research
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#activities" class="nav-link w-full text-left px-6 py-3 rounded-lg hover:bg-gray-50 transition flex items-center text-gray-600">
+                            <i class="fas fa-commenting w-6 text-center mr-3 text-gray-400"></i> Activities
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#misc" class="nav-link w-full text-left px-6 py-3 rounded-lg hover:bg-gray-50 transition flex items-center text-gray-600">
+                            <i class="fas fa-star-half-alt w-6 text-center mr-3 text-gray-400"></i> Misc
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT -->
+    <main class="flex-1 p-6 md:p-12 md:pl-16 max-w-5xl">
+        
+        <!-- ABOUT SECTION -->
+        <section id="about" class="mb-20 pt-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">About Me</h2>
+            
+            <div class="prose max-w-none text-gray-700 space-y-4">
+                <p>
+                    Welcome to my website! :) I am a postdoc research fellow at <a href="https://kempnerinstitute.harvard.edu/" target="_blank" class="hover:underline text-link">the Kempner Institute</a> at Harvard University.
+                    My research aims to make machine learning methods more efficient and accessible.
+                    Most recently, I'm particularly interested in understanding how various inductive biases (from data usage, training algorithms, and architecture) affect training efficiency and inference cost.
+                    I'm broadly interested in bridging theoretical and empirical/scientific understanding of machine learning, often drawing insights from <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank" class="hover:underline text-link">synthetic "sandbox" settings</a>.
+                </p>
+
+                <p>
+                    Before Kempner, I was a postdoc fellow at the Simons Institute, participating in <a href="https://simons.berkeley.edu/programs/special-year-large-language-models-transformers-part-1" target="_blank" class="hover:underline text-link">Special Year of Language Models</a> and <a href="https://simons.berkeley.edu/programs/modern-paradigms-generalization" target="_blank" class="hover:underline text-link">Modern Paradigm of Generalization</a>.
+                    I got my PhD from the <a href="https://www.ml.cmu.edu/" target="_blank" class="hover:underline text-link">Machine Learning Department</a> of Carnegie Mellon University, where I was fortunate to be co-advised by Prof. <a href="https://www.andrew.cmu.edu/user/aristesk/" target="_blank" class="hover:underline text-link">Andrej Risteski</a> and Prof. <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-link">Pradeep Ravikumar</a>.
+                    Previously, I was a master student in the <a href="http://svl.stanford.edu/" target="_blank" class="hover:underline text-link">Stanford Vision and Learning Lab</a>, where I worked on video understanding and its applications to <a href="https://aicare.stanford.edu/" target="_blank" class="hover:underline text-link">healthcare</a> under the supervision of Prof. <a href="http://vision.stanford.edu/feifeili/" target="_blank" class="hover:underline text-link">Fei-Fei Li</a>, Prof. <a href="http://www.niebles.net/" target="_blank" class="hover:underline text-link">Juan Carlos Niebles</a>, and Prof. <a href="http://ai.stanford.edu/~syyeung/" target="_blank" class="hover:underline text-link">Serena Yeung</a>.
+                </p>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-6 rounded-r">
+                    <p class="font-medium text-blue-900">
+                        I will be on the academic job market in the fall of 2026 (together with <a href="https://jthsieh.github.io/" target="_blank" class="hover:underline text-link">Tim Hsieh</a>). Please keep us in mind! :)
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RESEARCH SECTION -->
+        <section id="research" class="mb-20 pt-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Research</h2>
+            <!-- <h3 class="text-lg font-semibold text-gray-500 mb-6 uppercase tracking-wider">Preprints and Publications</h3> -->
+
+            <div class="space-y-8">
+
+                <!-- GRACE -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
-
-
-                    <div class="col-10 col-sm-10 col-md-10 col-lg-10 pl-3 pr-1 px-sm-4 pl-md-5 pt-1 pb-1 pb-sm-1 pt-sm-1 nameplate col-xl-7 offset-xl-0">
-                        <h2 class="hidden-xs-down"><span itemprop="name">Bingbin Liu</span></h2>
-                        <p class="my-0">Postdoc Research Fellow at Kempner Institute, Harvard University<br>
-                          bliu [at] g [dot] harvard [dot] edu<br>
-
-                          <a href="https://scholar.google.com/citations?user=2ud06rQAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                           <!-- / <a href="https://github.com/ClaraBing" target="_blank">Github</a> / <a href="https://www.linkedin.com/in/bingbinliu/" target="_blank">LinkedIn</a> -->
-                          / <a href="files/CV_Bingbin_LIU_Feb_2024.pdf" target="_blank">CV (Feb 2024)</a>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">In Good GRACES: Principled Teacher Selection for Knowledge Distillation</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>,
+                            Bingbin Liu,
+                            <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                            <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
+                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
                         </p>
-                        <br>
-
+                        <p class="text-sm text-gray-500 mt-1 italic">In submission</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
                     </div>
+                </div>
 
+                <!-- Adam or Gauss-Newton -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/Adam_or_GN.png" alt="Adam" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Adam or Gauss-Newton? A Comparative Study In Terms of Basis Alignment and SGD Noise</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://rachitbansal.github.io/" target="_blank" class="hover:underline text-author">Rachit Bansal</a>,
+                            <a href="https://depenm.github.io/" target="_blank" class="hover:underline text-author">Depen Morwani</a>,
+                            <a href="https://nikhilvyas.github.io/" target="_blank" class="hover:underline text-author">Nikhil Vyas</a>,
+                            <a href="https://dmelis.github.io/" target="_blank" class="hover:underline text-author">David Alvarez-Melis</a>,
+                            <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">In submission</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2510.13680" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progressive distillation -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
+                            Bingbin Liu*,
+                            <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
+                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dyck -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/Dyck.png" alt="Dyck" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">(Un)interpretability of Transformers: a case study with bounded Dyck grammars</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="https://whenwen.github.io/" target="_blank" class="hover:underline text-author">Kaiyue Wen</a>,
+                            <a href="https://www.cs.cmu.edu/~yuchenl4/" target="_blank" class="hover:underline text-author">Yuchen Li</a>,
+                            Bingbin Liu,
+                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2023</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2312.01429" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flipflop -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/flipflop.png" alt="Flipflop" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Exposing Attention Glitches with Flip-Flop Language Modeling</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
+                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                            <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
+                            <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2023 (Spotlight)</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2306.00946" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automata -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/automata.png" alt="Automata" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Transformers Learn Shortcuts to Automata</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
+                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                            <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
+                            <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">ICLR 2023 (Oral)</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2210.10749" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            <a href="https://openreview.net/forum?id=De4FYqjFueZ" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                            <a href="https://clarabing.github.io/shortcut_automata/" target="_blank" class="hover:underline text-link mr-3">[Project Page]</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- HMM -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/masked_HMM.png" alt="HMM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Masked prediction tasks: a parameter identifiability view</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://www.cs.columbia.edu/~djhsu/" target="_blank" class="hover:underline text-author">Daniel Hsu</a>,
+                            <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
+                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2022</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2202.09305" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- eNCE -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/density_chasm_3d.png" alt="eNCE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Analyzing and improving the optimization landscape of noise-contrastive estimation</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu, <a href="http://www.cs.cmu.edu/~elan/" target="_blank" class="hover:underline text-author">Elan Rosenfeld</a>,
+                            <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
+                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">ICLR 2022 (Spotlight)</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2110.11271" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SDE -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/diffusion.png" alt="SDE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Contrastive learning of strong-mixing continuous-time stochastic processes</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
+                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">AISTATS 2021</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2103.02740" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boosting -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/boosting.png" alt="Boosting" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Generalized Boosting</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="http://www.cs.cmu.edu/~asuggala/" target="_blank" class="hover:underline text-author">Arun Sai Suggala</a>,
+                            Bingbin Liu,
+                            <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2020</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://papers.nips.cc/paper/2020/hash/63f44623dd8686aba388944c8810087f-Abstract.html" target="_blank" class="hover:underline text-link mr-3">[Paper]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STIP -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/STIP.jpg" alt="STIP" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Spatiotemporal Relationship Reasoning for Pedestrian Intent Prediction</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://web.stanford.edu/~eadeli/" target="_blank" class="hover:underline text-author">Ehsan Adeli</a>,
+                            <a href="https://caozhangjie.github.io/" target="_blank" class="hover:underline text-author">Zhangjie Cao</a>,
+                            <a href="https://scholar.google.com/citations?user=u8K7nOwAAAAJ&hl=en" target="_blank" class="hover:underline text-author">Kuan-Hui Lee</a>,
+                            <a href="https://scholar.google.com/citations?user=ZOG99ccAAAAJ&hl=en" target="_blank" class="hover:underline text-author">Abhijeet Shenoi</a>,
+                            <a href="https://adriengaidon.com/" target="_blank" class="hover:underline text-author">Adrien Gaidon</a>,
+                            <a href="https://www.niebles.net/" target="_blank" class="hover:underline text-author">Juan Carlos Niebles</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">IEEE-RAL & ICRA 2020</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/2002.08945" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Digital Medicine -->
+                 <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/ML4H18.png" alt="Medicine" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">A Computer Vision System to Detect Bedside Patient Mobilization</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="https://ai.stanford.edu/~syyeung/" target="_blank" class="hover:underline text-author">Serena Yeung</a>*,
+                            <a href="https://www.linkedin.com/in/francesca-rinaldo-md-phd-b51984138/" target="_blank" class="hover:underline text-author">Francesca Rinaldo</a>*,
+                            Jeffrey Jopling,
+                            Bingbin Liu,
+                            <a href="https://www.linkedin.com/in/mehrarishab/" target="_blank" class="hover:underline text-author">Rishab Mehra</a>,
+                            <a href="https://med.stanford.edu/profiles/norman-downing" target="_blank" class="hover:underline text-author">Lance Downing</a>,
+                            <a href="https://shellguo.com/" target="_blank" class="hover:underline text-author">Michelle Guo</a>, Gabriel Bianconi, Alexandre Alahi, Julia Lee, Brandi Campbell, Kayla Deru, William Beninati,
+                            <a href="https://profiles.stanford.edu/fei-fei-li/" target="_blank" class="hover:underline text-author">Li Fei-Fei</a>,
+                            <a href="https://profiles.stanford.edu/arnold-milstein" target="_blank" class="hover:underline text-author">Arnold Milstein</a>.
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">Nature Digital Medicine, 2019</p>
+                          <div class="mt-2 text-base">
+                            <a href="https://www.nature.com/articles/s41746-019-0087-z" target="_blank" class="hover:underline text-link mr-3">[Paper]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TMN -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/ECCV18_TMN.jpg" alt="TMN" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Temporal Modular Networks for Retrieving Complex Compositional Activities in Videos</h4>
+                        <p class="text-gray-700 mt-1">
+                            Bingbin Liu,
+                            <a href="https://ai.stanford.edu/~syyeung/" target="_blank" class="hover:underline text-author">Serena Yeung</a>,
+                            <a href="https://edwardjchou.github.io/" target="_blank" class="hover:underline text-author">Edward Chou</a>,
+                            <a href="http://ai.stanford.edu/~dahuang/" target="_blank" class="hover:underline text-author">De-An Huang</a>,
+                            <a href="https://profiles.stanford.edu/fei-fei-li/" target="_blank" class="hover:underline text-author">Li Fei-Fei</a>,
+                            <a href="https://www.niebles.net/" target="_blank" class="hover:underline text-author">Juan Carlos Niebles</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">ECCV 2018</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Bingbin_Liu_Temporal_Modular_Networks_ECCV_2018_paper.html" target="_blank" class="hover:underline text-link mr-3">[Paper]</a>
+                            <a href="https://clarabing.github.io/tmn/" target="_blank" class="hover:underline text-link mr-3">[Project Page]</a>
+                            <a href="https://youtu.be/RrKOHcS9OHA" target="_blank" class="hover:underline text-link mr-3">[Video]</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DDEAP -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/NIPS18_DDPAE.png" alt="DDEAP" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Learning to Decompose and Disentangle Representations for Video Prediction</h4>
+                        <p class="text-gray-700 mt-1">
+                            <a href="https://jthsieh.github.io/" target="_blank" class="hover:underline text-author">Jun-Ting Hsieh</a>, 
+                            Bingbin Liu,
+                            <a href="http://ai.stanford.edu/~dahuang/" target="_blank" class="hover:underline text-author">De-An Huang</a>,
+                            <a href="https://profiles.stanford.edu/fei-fei-li/" target="_blank" class="hover:underline text-author">Li Fei-Fei</a>,
+                            <a href="https://www.niebles.net/" target="_blank" class="hover:underline text-author">Juan Carlos Niebles</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2018</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://arxiv.org/abs/1806.04166" target="_blank" class="hover:underline text-link mr-3">[Paper]</a>
+                            <a href="https://github.com/jthsieh/DDPAE-video-prediction" target="_blank" class="hover:underline text-link mr-3">[Github]</a>
+                            <a href="https://www.youtube.com/watch?v=__tug8G2u-4" target="_blank" class="hover:underline text-link mr-3">[Video]</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MLHC -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="sm:w-32 flex-shrink-0">
+                        <img src="pics/MLHC18_3d.png" alt="MLHC" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900 leading-tight">3D Point Cloud-Based Visual Prediction of ICU Mobility Care Activities</h4>
+                        <p class="text-gray-700 mt-1">
+                            <strong>Bingbin Liu</strong>*,
+                            <a href="https://shellguo.com/" target="_blank" class="hover:underline text-author">Michelle Guo</a>*,
+                            <a href="https://edwardjchou.github.io/" target="_blank" class="hover:underline text-author">Edward Chou</a>,
+                            <a href="https://www.linkedin.com/in/mehrarishab/" target="_blank" class="hover:underline text-author">Rishab Mehra</a>,
+                            <a href="https://ai.stanford.edu/~syyeung/" target="_blank" class="hover:underline text-author">Serena Yeung</a>,
+                            <a href="https://med.stanford.edu/profiles/norman-downing" target="_blank" class="hover:underline text-author">N. Lance Downing</a>,
+                            <a href="https://www.linkedin.com/in/francesca-rinaldo-md-phd-b51984138/" target="_blank" class="hover:underline text-author">Francesca Salipur</a>,
+                            Jeffrey Jopling, Brandi Campbell, Kayla Deru, William Beninati,
+                            <a href="https://profiles.stanford.edu/arnold-milstein" target="_blank" class="hover:underline text-author">Arnold Milstein</a>
+                        </p>
+                        <p class="text-sm text-gray-500 mt-1 italic">MLHC 2018</p>
+                        <div class="mt-2 text-base">
+                            <a href="https://static1.squarespace.com/static/59d5ac1780bd5ef9c396eda6/t/5b7372b240ec9a45a9542d2e/1534292660078/10.pdf" target="_blank" class="hover:underline text-link mr-3">[Paper]</a>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-        </div>
-    </div>
-
-    <br>
-    <div class="container">
-        <div>
-                <div class="row ml-5">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 pl-3 pr-1 px-sm-4 pl-md-5 pt-1 pb-1 pb-sm-1 pt-sm-1 nameplate col-xl-11 offset-xl-0">
-                        <p> Welcome to my website! :) I am a postdoc research fellow at <a href="https://kempnerinstitute.harvard.edu/" target="_blank">the Kempner Institute</a> at Harvard University.
-                          My research aims to make machine learning methods more efficient and accessible.
-                          Most recently, I'm particularly interested in understanding how various inductive biases (from data usage, training algorithms, and architecture) affect training efficiency and inference cost.
-                          I'm broadly interested in bridging theoretical and empirical/scientific understanding of machine learning, often drawing insights from <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank">synthetic "sandbox" settings</a>.
-                          <br>
-                        </p>
-                        <p>
-                          Before Kempner, I was a postdoc fellow at the Simons Institute, participating in <a href="https://simons.berkeley.edu/programs/special-year-large-language-models-transformers-part-1" target="_blank">Special Year of Language Models</a> and <a href="https://simons.berkeley.edu/programs/modern-paradigms-generalization" target="_blank">Modern Paradigm of Generalization</a>.
-                          I got my PhD from the <a href="https://www.ml.cmu.edu/" target="_blank">Machine Learning Department</a> of Carnegie Mellon University, where I was fortunate to be co-advised by Prof. <a href="https://www.andrew.cmu.edu/user/aristesk/" target="_blank">Andrej Risteski</a> and Prof. <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank">Pradeep Ravikumar</a>.
-                          Previously, I was a master student in the <a href="http://svl.stanford.edu/" target="_blank">Stanford Vision and Learning Lab</a>, where I worked on video understanding and its applications to <a href="https://aicare.stanford.edu/" target="_blank">healthcare</a> under the supervision of Prof. <a href="http://vision.stanford.edu/feifeili/" target="_blank">Fei-Fei Li</a>, Prof. <a href="http://www.niebles.net/" target="_blank">Juan Carlos Niebles</a>, and Prof. <a href="http://ai.stanford.edu/~syyeung/" target="_blank">Serena Yeung</a>.
-                        </p>
-                        <!--<p>Here are some slides from <a href="files/Cornell_workshop_Bingbin.pdf" target="_blank">my recent talk</a> which may provide more information about my work.-->
-                        </li></p>
-
-                        <p> I will be on the academic job market in the fall of 2026 (together with <a href="https://jthsieh.github.io/" target="_blank">Tim Hsieh</a>). Please keep us in mind! :)
-                        </p>
+        </section>
 
 
-                  </div>
-                </div>
-        </div>
-    </div>
 
-    <!-- Preprints -->
-    <!--<div class="container">
-        <div>
-            <div class="row mb-6">
-                <div class="co6-14 pt-3  px-2 pb-4   bubble offset-xl-1 col-xl-10">
-                  <h4>Preprints</h4>-->
-
-
-          <!-- Contrastive Sparse -->
-          <!--  <div class="publication media">
-            <img src='pics/contrastive_sparse.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong>Towards a qualitatively better understanding of contrastive learning features</strong><br>
-                Bingbin Liu, Zixin Wen, <a href="https://www.andrew.cmu.edu/user/yuanzhil/">Yuanzhi Li</a>, Andrej Risteski<br>
-                            </p>
-            </div>
-          </div> -->
-    <!--</div> -->
-
-
-    <!-- Publications -->
-    <div class="container">
-    <div>
-    <div class="row mb-6">
-    <div class="co6-14 pt-3  px-2 pb-4   bubble offset-xl-1 col-xl-10">
-      <h4>Preprints and Publications</h4>
-      <!--<h5 class="pt-2 pb-1">Video Understanding</h5>-->
-
-
-          <!-- GRACE  -->
-          <div class="publication media">
-            <img src='pics/GRACE_wide.png' class='publogo img-fluid float-center rounded g' width='120'>
-            <div class="media-body">
-              <p><strong>In Good GRACES: Principled Teacher Selection for Knowledge Distillation</strong><br>
-                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank">Abhishek Panigrahi</a>,
-                Bingbin Liu,
-                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank">Sadhika Malladi</a>,
-                <a href="https://shamulent.github.io/" target="_blank">Sham M. Kakade</a>,
-                <a href="https://www.surbhigoel.com/" target="_blank">Surbhi Goel</a><br>
-                <em>In submission</em> [<a href="https://arxiv.org/abs/2511.02833" target="_blank">arXiv</a>]
-              </p>
-            </div>
-          </div>
-
-
-          <!-- Adam or Gauss-Newton -->
-          <div class="publication media">
-            <img src='pics/Adam_or_GN.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2510.13680" target="_blank">Adam or Gauss-Newton? A Comparative Study In Terms of Basis Alignment and SGD Noise
-                </a></strong><br>
-                Bingbin Liu,
-                <a href="https://rachitbansal.github.io/" target="_blank">Rachit Bansal</a>,
-                <a href="https://depenm.github.io/" target="_blank">Depen Morwani</a>,
-                <a href="https://nikhilvyas.github.io/" target="_blank">Nikhil Vyas</a>,
-                <a href="https://dmelis.github.io/" target="_blank">David Alvarez-Melis</a>,
-                <a href="https://shamulent.github.io/" target="_blank">Sham M. Kakade</a>
-                <br>
-                <em>In submission</em> [<a href="https://arxiv.org/abs/2510.13680" target="_blank">arXiv</a>]
-              </p>
-            </div>
-          </div>
-
-          <!-- Progressive distillation (ICLR 25) -->
-          <div class="publication media">
-            <img src='pics/progressive_distillation.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2410.05464" target="_blank">Progressive distillation induces an implicit curriculum</a></strong><br>
-                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank">Abhishek Panigrahi</a>,
-                Bingbin Liu,
-                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank">Sadhika Malladi</a>,
-                <a href="https://www.andrejristeski.org/" target="_blank">Andrej Risteski</a>,
-                <a href="https://www.surbhigoel.com/" target="_blank">Surbhi Goel</a><br>
-                <em>ICLR25 (Oral)</em> [<a href="https://arxiv.org/abs/2410.05464" target="_blank">arXiv</a> / <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank">OpenReview</a>]
-              </p>
-            </div>
-          </div>
-
-          <!-- Dyck (NeurIPS 23) -->
-          <div class="publication media">
-            <img src='pics/Dyck.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2312.01429" target="_blank">(Un)interpretability of Transformers: a case study with bounded Dyck grammars</a></strong><br>
-                <a href="https://whenwen.github.io/" target="_blank">Kaiyue Wen</a>, <a href="https://www.cs.cmu.edu/~yuchenl4/" target="_blank">Yuchen Li</a>, Bingbin Liu, <a href="https://www.andrejristeski.org/" target="_blank">Andrej Risteski</a><br>
-                <em>NeurIPS23</em> [<a href="https://arxiv.org/abs/2312.01429" target="_blank">arXiv</a>]
-              </p>
-            </div>
-          </div>
-
-          <!-- Flipflop (NeurIPS 23) -->
-          <div class="publication media">
-            <img src='pics/flipflop.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2306.00946" target="_blank">Exposing Attention Glitches with Flip-Flop Language Modeling
-</a></strong><br>
-                Bingbin Liu, <a href="https://www.jordantash.com/" target="_blank">Jordan T. Ash</a>, <a href="https://www.surbhigoel.com/" target="_blank">Surbhi Goel</a>, <a href="https://people.cs.umass.edu/~akshay/" target="_blank">Akshay Krishnamurthy</a>, <a href="https://cyrilzhang.com/" target="_blank">Cyril Zhang</a><br>
-                <em>NeurIPS23 (Spotlight)</em> [<a href="https://arxiv.org/abs/2306.00946" target="_blank">arXiv</a>]
-              </p>
-            </div>
-          </div>
-
-          <!-- Transformer Automata (ICLR 23) -->
-          <div class="publication media">
-            <img src='pics/automata.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2210.10749" target="_blank">Transformers Learn Shortcuts to Automata</a></strong><br>
-                Bingbin Liu, <a href="https://www.jordantash.com/" target="_blank">Jordan T. Ash</a>, <a href="https://www.surbhigoel.com/" target="_blank">Surbhi Goel</a>, <a href="https://people.cs.umass.edu/~akshay/" target="_blank">Akshay Krishnamurthy</a>, <a href="https://cyrilzhang.com/" target="_blank">Cyril Zhang</a><br>
-                <em>ICLR23 (Oral)</em> [<a href="https://arxiv.org/abs/2210.10749" target="_blank">arXiv</a> / <a href="https://openreview.net/forum?id=De4FYqjFueZ" target="_blank">OpenReview</a> / <a href="https://clarabing.github.io/shortcut_automata/" target="_blank">project page</a>]
-              </p>
-            </div>
-          </div>
-
-          <!-- HMM (NeurIPS 22) -->
-          <div class="publication media">
-            <img src='pics/masked_HMM.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2202.09305" target="_blank">Masked prediction tasks: a parameter identifiability view</a></strong><br>
-                Bingbin Liu, <a href="https://www.cs.columbia.edu/~djhsu/" target="_blank">Daniel Hsu</a>,
-                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank">Pradeep Ravikumar</a>,
-                <a href="https://www.andrejristeski.org/" target="_blank">Andrej Risteski</a>
-                <br>
-                <em>NeurIPS 2022</em> [<a href="https://arxiv.org/abs/2202.09305" target="_blank">arXiv</a>]
-              </p>
-            </div>
-          </div>
-
-
-          <!-- eNCE (ICLR 22) -->
-          <div class="publication media">
-            <!--<img src="pics/STIP.jpg" class="publogo img-fluid float-left rounded g" width="150">-->
-            <img src='pics/density_chasm_3d.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2110.11271" target="_blank">Analyzing and improving the optimization landscape of noise-contrastive estimation</a></strong><br>
-                Bingbin Liu, <a href="http://www.cs.cmu.edu/~elan/" target="_blank">Elan Rosenfeld</a>, 
-                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank">Pradeep Ravikumar</a>,
-                <a href="https://www.andrejristeski.org/" target="_blank">Andrej Risteski</a>
-                <br>
-                <em>ICLR 2022 (Spotlight)</em>
-                [<a href="https://blog.ml.cmu.edu/2021/11/05/analyzing-and-improving-the-optimization-landscape-of-noise-contrastive-estimation/" target="_blank">blog post</a>]
-                <br>
-              </p>
-            </div>
-          </div>
-
-
-          <!-- SDE (AISTATS 21)-->
-          <div class="publication media">
-            <img src='pics/diffusion.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2103.02740" target="_blank">Contrastive learning of strong-mixing continuous-time stochastic processes</a></strong><br>
-                <strong>Bingbin Liu</strong>,
-                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank">Pradeep Ravikumar</a>,
-                <a href="https://www.andrejristeski.org/" target="_blank">Andrej Risteski</a>
-                <br>
-                <em>AISTATS 2021</em> [<a href="https://arxiv.org/abs/2103.02740" target="_blank">arXiv</a>]
-                            </p>
-            </div>
-          </div>
-
-
-          <!-- Generalized boosting (NeurIPS 20)-->
-          <div class="publication media">
-            <img src='pics/boosting.png' class='publogo img-fluid float-left rounded g' width='120'>
-            <div class="media-body">
-              <p><strong><a href='https://papers.nips.cc/paper/2020/hash/63f44623dd8686aba388944c8810087f-Abstract.html' target="_blank">Generalized Boosting</a></strong><br>
-                <a href="http://www.cs.cmu.edu/~asuggala/" target="_blank">Arun Sai Suggala</a>,
-                <strong>Bingbin Liu</strong>,
-                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank">Pradeep Ravikumar</a>,
-                <br>
-                <em>NeurIPS 2020</em><br>
-                            </p>
-            </div>
-          </div>
-
-
-          <!-- STIP -->
-          <div class="publication media">
-            <img src="pics/STIP.jpg" class="publogo img-fluid float-left rounded g" width="120">
-            <div class="media-body">
-              <p><strong><a href="https://arxiv.org/abs/2002.08945" target="_blank">Spatiotemporal Relationship Reasoning for Pedestrian Intent Prediction</a></strong><br>
-                <strong>Bingbin Liu</strong>, <a href="https://web.stanford.edu/~eadeli/" target="_blank">Ehsan Adeli</a>, <a href="https://caozhangjie.github.io/" target="_blank">Zhangjie Cao</a>, <a href="https://scholar.google.com/citations?user=u8K7nOwAAAAJ&hl=en" target="_blank">Kuan-Hui Lee</a>, <a href="https://scholar.google.com/citations?user=ZOG99ccAAAAJ&hl=en" target="_blank">Abhijeet Shenoi</a>, <a href="https://adriengaidon.com/" target="_blank">Adrien Gaidon</a>, Juan Carlos Niebles<br>
-                <em>IEEE-RAL + ICRA 2020</em><br>
-                              <!--<span class="links"><a href="https://drive.google.com/open?id=1W2UXLNaE0tseZJHCYTfmi2Ii0DGJgHuK">Paper</a>-->
-                            </p>
-            </div>
-          </div>
-
-
-         <!-- Nature Digital Medicine -->
-         <div class="publication media">
-             <img src="pics/ML4H18.png" class="publogo img-fluid float-left rounded g" width="120">
-             <div class="media-body">
-                 <p><strong><a href="https://www.nature.com/articles/s41746-019-0087-z" target="_blank">A Computer Vision System to Detect Bedside Patient Mobilization</a></strong><br>
-                   Serena Yeung*, Francesca Rinaldo*, Jeffrey Jopling, <strong>Bingbin Liu</strong>, Rishab Mehra, Lance Downing, <a href="https://shellguo.com/" target="_blank">Michelle Guo</a>, Gabriel Bianconi, Alexandre Alahi, Julia Lee, Brandi Campbell, Kayla Deru, William Beninati, Li Fei-Fei, Arnold Milstein.<br>
-                   <em>Nature Digital Medicine, </em>2019<br>
-                 </p>
-             </div>
-         </div>
-
-          <!-- TMN (ECCV 18) -->
-					<div class="publication media">
-					<a href="https://clarabing.github.io/tmn/"><img src="pics/ECCV18_TMN.jpg" class="publogo img-fluid float-left rounded g" width="120"></a>
-					<div class="media-body">
-						<p><strong><a href="https://clarabing.github.io/tmn/" target="_blank">Temporal Modular Networks for Retrieving Complex Compositional Activities in Videos</a></strong><br>
-						  <strong>Bingbin Liu</strong>, Serena Yeung, <a href="https://edwardjchou.github.io/" target="_blank">Edward Chou</a>, <a href="http://ai.stanford.edu/~dahuang/" target="_blank">De-An Huang</a>, Li Fei-Fei, Juan Carlos Niebles<br>
-						  <em>European Conference on Computer Vision (ECCV), </em>2018<br> Also presented at Women in Computer Vision (WiCV) workshop.<br>
-                            <!--<span class="links"><a href="https://drive.google.com/open?id=1W2UXLNaE0tseZJHCYTfmi2Ii0DGJgHuK" target="_blank">Paper</a>-->
-                            <span class="links"><a href="https://clarabing.github.io/tmn/ECCV18_compositionality.pdf" target="_blank">Paper</a>
-                            <a href="https://clarabing.github.io/tmn/" target="_blank">Project page</a>
-                            <a href="https://clarabing.github.io/tmn/ECCV18_poster.pdf" target="_blank">Poster</a>
-                            <a href="https://youtu.be/RrKOHcS9OHA" target="_blank">Video</a>
-                            </span>
-                          </p>
-					</div>
-					</div>
-
-          <!-- DDEAP (NeurIPS 18) -->
-					<div class="publication media">
-						<a href="https://arxiv.org/abs/1806.04166" target="_blank"><img src="pics/NIPS18_DDPAE.png" class="publogo img-fluid float-left rounded g" width="120">
-						</a>
-						<div class="media-body">
-							<p><strong><a href="https://arxiv.org/abs/1806.04166" target="_blank">Learning to Decompose and Disentangle Representations for Video Prediction</a></strong><br>
-							  <a href="https://jthsieh.github.io/" target="_blank">Jun-Ting Hsieh</a>, <strong>Bingbin Liu</strong>, De-An Huang, Li Fei-Fei, Juan Carlos Niebles<br>
-							  <em> Neural Information Processing Systems (NeurIPS), </em>2018<br>
-                              <span class="links"><a href="https://arxiv.org/abs/1806.04166" target="_blank">Paper</a>
-                              <span class="links"><a href="https://github.com/jthsieh/DDPAE-video-prediction" target="_blank">Github</a>
-                              <span class="links"><a href="https://jthsieh.github.io/files/publications/NIPS18_Poster.pdf" target="_blank">Poster</a>
-                              <span class="links"><a href="https://www.youtube.com/watch?v=__tug8G2u-4" target="_blank">Video</a>
-                              </span>
-                            </p>
-						</div>
-					</div>
-
-
-         <!-- MLHC 18 -->
-         <div class="publication media">
-             <a href="https://static1.squarespace.com/static/59d5ac1780bd5ef9c396eda6/t/5b7372b240ec9a45a9542d2e/1534292660078/10.pdf" target="_blank"><img src="pics/MLHC18_3d.png" class="publogo img-fluid float-left rounded g" width="120"></a>
-             <div class="media-body">
-                 <p><strong><a href="https://static1.squarespace.com/static/59d5ac1780bd5ef9c396eda6/t/5b7372b240ec9a45a9542d2e/1534292660078/10.pdf" target="_blank">3D Point Cloud-Based Visual Prediction of ICU Mobility Care Activities</a></strong><br>
-                   <strong>Bingbin Liu</strong>*, Michelle Guo*, Edward Chou, Rishab Mehra, Serena Yeung, N. Lance Downing, Francesca Salipur, Jeffrey Jopling, Brandi Campbell, Kayla Deru, William Beninati, Arnold Milstein, <br>
-                   <em>Machine Learning for Health Care (MLHC), </em>2018<br>
-                   <span class="links"><a href="https://static1.squarespace.com/static/59d5ac1780bd5ef9c396eda6/t/5b7372b240ec9a45a9542d2e/1534292660078/10.pdf">Paper</a>
-                   </span>
-                 </p>
-             </div>
-         </div>
-
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-    <!-- Experiences -->
-    <!-- <div class="container">-->
-      <!-- <div>-->
-        <!-- <div class="row mb-3">-->
-          <!--    <div class="col-12 pt-3  px-2 pb-4   bubble offset-xl-1 col-xl-10">-->
-            <!--    <h4>Experiences</h4>-->
-              <!--  <p><strong>Teaching</strong>: When at Stanford, I was a teaching assistant for <a href="http://cs231n.stanford.edu/">CS231n: Convolutional Neural Networks for Visual Recognition</a> in Spring 2018 and Spring 2019, and the ICU project lead for <a href="http://cs337.stanford.edu/">MED277/CS377: AI-Assisted Healthcare</a>.-->
-                <!-- <br>-->
-                  <!-- I also had a great time working with some talented high school girls who are starting to learn coding. I helped at <a href="http://www.girlsteachinggirlstocode.org/">Girls teach Girls to Code (GTGTC)</a> in April 2018 as the mentor lead of the AI team. I worked with <a href="https://nlp.stanford.edu/robvoigt/">Rob Voigt</a> as research mentors for the NLP team at Stanford <a href="http://ai4all.stanford.edu/">AI4ALL</a> in summer 2018, where we worked with <a href="pics/AI4ALL.jpg">an amazing team of 8 girls</a> on a project applying NLP techniques on Tweets to help with identifying resources for disaster relief. If you are interested in learning more about the role identities play in tech industries, please check out the website of <a href="http://morganya.org/">Morgan Ames</a>, a postdoc researher who observed the AI4ALL camps and is really nice to talk to. :)</p>-->
-
-                    <!-- <p><strong>Internship</strong>: I joined the Enterprise and Analytics team as a Group IT intern at <a href="https://www.clp.com.hk/en">CLP Power Hong Kong Limited</a> in summer 2016, and was a software engineering intern at <a href="http://www.hututa.com/">Hututa</a> in summer 2015.</p>-->
-                      <!-- </div>-->
-                        <!-- </div>-->
-                          <!-- </div>-->
-                            <!-- </div>-->
-
-    
-    <!-- Misc -->
-    <div class="container">
-        <div class="row mb-3">
-        <div class="col-12 pt-3  px-2 pb-4 bubble offset-xl-1 col-xl-10">
-        <h4>Misc</h4>
-        I want to keep a list of good advice I've received from various friends and mentors.
-        Please let me know if you have recommendations (especially since I'm doing a horrible job at gender balance here)!
-        <ul>
-          <li>The most important points: Value (and protect) your time, the power of writing (languages and proofs), and clarify of thought. Be kind.
-          <li>PhD can be intense and/or rewarding. It's a very personal journey but you're very likely not alone.
-              In case you want to hear from some fellow PhD students/graduates, here's some advice by
-                <a href="https://karlstratos.com/student.php" target="_blank">Karl Stratos</a>,
-                <a href="https://home.ttic.edu/~kgimpel/etc/phd-advice.pdf" target="_blank">Kevin Gimpel</a>,
-                <a href="https://matt.might.net/articles/phd-school-in-pictures/" target="_blank">Matt Might</a>,
-                <a href="https://benchugg.com/writing/phd-thoughts/" target="_blank">Ben Chugg</a>.
+        <!-- ACTIVITIES SECTION -->
+        <section id="activities" class="mb-40 pt-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Activities</h2>
+            
+            
+            <h3 class="text-lg font-semibold text-gray-500 mb-6 uppercase tracking-wider">Talks</h3>
+            <p class="text-gray-600 mb-2">
+            
+            <text class="text-gray-600 mb-2 text-lg">Learning from "sandboxes" </text>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li>
+                <strong>NeurIPS24 Tutorial: Sandbox for the Blackbox: How LLMs Learn Structured Data?</strong> <br>
+                  Tutorial at NeurIPS 2024,
+                  together with <a href="https://ashokvardhan.github.io/" target="_blank" class="hover:underline text-link">Ashok Vardhan Makkuva</a> and <a href="https://jasondlee88.github.io/" target="_blank" class="hover:underline text-link">Jason Lee</a>.
+                  <br>
+                  [<a href="https://neurips.cc/virtual/2024/tutorial/99532" target="_blank" class="hover:underline text-link">NeurIPS page</a> | <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank" class="hover:underline text-link">Project page</a>]
               </li>
-          <li>Research advice by
-              <a href="https://www.cs.utexas.edu/~dahlin/bookshelf/hamming.html" target="_blank">R. W. Hamming</a>,
-              <a href="https://terrytao.wordpress.com/career-advice/" target="_blank">Terence Tao</a>,
-              <a href="https://www.youtube.com/watch?v=Unzc731iCUY" target="_blank">Patrick Winston</a> (how to speak),
-              <a href="https://people.csail.mit.edu/moitra/docs/Let3.pdf" target="_blank">Ankur Moitra</a> (how to do theory),
-              <a href="https://www.stat.cmu.edu/~aramdas/checklists/reading-tips.pdf" target="_blank">Aaditya Ramdas</a> (how to read papers),
-              <a href="https://www.mit.edu/~jnt/Papers/R-20-write-v5.pdf" target="_blank">John N. Tsitsiklis</a> (how to write technical contents).
-              <a href="https://let-all.com/" target="_blank">LeT-All</a> also has nice advce on various topics from multiple years!
-          </li>
-          <li>Why theory/math? <a href="https://www.youtube.com/watch?v=YoL3LfY3ogg" target="_blank">Talk</a> by Tim Gowers.</li>
-        </ul>
+              <li>
+                <strong>Guiding machine learning design with insights from simple testbeds</strong> <br>
+                Talk at the <a href="https://www.cs.cornell.edu/juniortheorists/" target="_blank" class="hover:underline text-link">Cornell Junior Theorists' Workshop</a> at Cornell University, Spring 2024.
+                [<a href="files/cornell_workshop_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+            </ul>
+            
+            <text class="text-gray-600 mb-2 text-lg">Knowledge distillation </text>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li>
+                <strong>Learning from the Right Teacher in Knowledge Distillation</strong> <br>
+                Talk at Columbia University hosted by <a href="https://www.cs.columbia.edu/~djhsu/" target="_blank" class="hover:underline text-link">Daniel Hsu</a>, Fall 2025.
+                [<a href="files/talks/distillation_Columbia_Nov6_2025_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+              <li>
+                <strong>Improving training with progressive distillation</strong> <br>
+                Remote talks hosted by <a href="http://yusu.belkin-wang.org/" target="_blank" class="hover:underline text-link">Yusu Wang</a> and <a href="https://indico.ictp.it/event/10849/other-view?view=ictptimetable" target="_blank" class="hover:underline text-link">6th Youth in High-Dimensions</a> at ICTP, 2025.
+                [<a href="files/talks/distillation_ICTP_July7_2025_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+              <!-- <li>
+                <strong>Faster training with (Progressive) Distillation</strong> <br>
+                Remote talk at UCSD hosted by <a href="http://yusu.belkin-wang.org/" target="_blank" class="hover:underline text-link">Yusu Wang</a>, Spring 2025.
+                [<a href="files/talks/progressive_distillation_Mar11_2025_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li> -->
+            </ul>
 
-        <strong>Random</strong>. Some photos of <a class='info' href="https://photos.app.goo.gl/4Eumf3wiYx8HAYs97" target="_blank">places I've lived in</a> and <a class='info' href="https://photos.app.goo.gl/uRKi3QWaaikRVW3x6" target="_blank">furry friends</a> I met along the way.
-        A <a href="https://clarabing.github.io/connections/" target="_blank"> Connections </a> game for our wedding.
-        (More to be continued :))
+            <text class="text-gray-600 mb-2 text-lg">Transformer reasoning </text>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li> 
+                <strong>Capabilities and limitations of Transformer in sequential reasoning</strong> <br>
+                <a href="https://simons.berkeley.edu/talks/bingbin-liu-carnegie-mellon-university-2024-09-23" target="_blank" class="hover:underline text-link">Talk</a> at the <a href="https://simons.berkeley.edu/programs/special-year-large-language-models-transformers-part-1" target="_blank" class="hover:underline text-link">Special Year of Language Models and Transformers</a> program at the Simons Institute, Fall 2024.
+                [<a href="files/talks/transformer_reasoning_Simons_Sep23_2024_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+              <li>
+                <strong>Thinking Fast with Transformers: algorithmic reasoning with shortcuts</strong> <br>
+                Remote talks hosted by the <a href="https://www.mis.mpg.de/events/event/thinking-fast-with-transformers-algorithmic-reasoning-via-shortcuts" target="_blank" class="hover:underline text-link">Math Machine Learning seminar MPI MIS + UCLA</a>, <a href="https://www.cs.toronto.edu/~cmaddis/" target="_blank" class="hover:underline text-link">Chris Maddison</a>, and <a href="https://www.bilibili.com/video/BV1Se411z7HG/" target="_blank" class="hover:underline text-link">FAI-Seminar</a>, 2023.
+                [<a href="files/talks/thinking_fast_fai_Dec15_2023_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+              <li>
+                <strong>Exposing Attention Glitches with Flip-Flop Language Modeling</strong> <br>
+                <a href="https://www.youtube.com/watch?v=3wWMACuXHds" target="_blank" class="hover:underline text-link">Remote talk</a> at <a href="https://www.womeninairobotics.de/" target="_blank" class="hover:underline text-link">Women in AI & Robotics</a>, Spring 2025.
+                [<a href="files/talks/attention_glitches_Feb19_2025_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+              <li>
+                <strong>Transformers Learn Shortcuts to Automata</strong> <br>
+                Remote talks hosted by <a href="https://www.youtube.com/watch?v=ni9jCjhRUyY" target="_blank" class="hover:underline text-link">Formal Languages and Neural Networks Seminar</a> and <a href="https://jsteinhardt.stat.berkeley.edu/" target="_blank" class="hover:underline text-link">Jacob Steinhardt</a>, 2022-2023.
+                [<a href="files/talks/shortcut_automata_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+              </li>
+            </ul>
+            </p>
 
-        </div>
+            <h3 class="text-lg font-semibold text-gray-500 mb-6 uppercase tracking-wider">Organized Events</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+              <li>
+                LeT-All <a href="https://www.let-all.com/fall25.html" target="_blank" class="hover:underline text-link">Fall 2025 Mentorship Workshop</a>
+              </li>
+              <li>
+                <a href="https://icml.cc/virtual/2025/workshop/39977" target="_blank" class="hover:underline text-link">Methods and Opportunities at Small Scale (MOSS)</a> workshop at ICML 2025 (<a href="https://sites.google.com/view/moss2025" target="_blank" class="hover:underline text-link">Project page</a>)
+              </li>
+              <li>
+                Mathematics of Modern Machine Learning (M3L) workshop series at <a href="https://sites.google.com/view/m3l-2024/" target="_blank" class="hover:underline text-link">NeurIPS 2024</a> and <a href="https://sites.google.com/view/m3l-2023/" target="_blank" class="hover:underline text-link">NeurIPS 2023</a>.
+              </li>
+              <li>
+                <a href="https://capricious-comb-7a3tbssph.notion.site/Parallel-vs-Recurrent-models-cffb41b1c5b44c8489748f6269028b41?pvs=74" target="_blank" class="hover:underline text-link">Parallel vs Recurrent Models</a> reading group at Simons Institute, Fall 2024.
+              </li>
+            </ul>
+        </section>
 
-        </div>
 
-    </div>
+        <!-- Misc SECTION -->
 
+        <section id="misc" class="mb-40 pt-4">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Misc</h2>
+              <div class="text-gray-700 text-base">
+                  <p class="mb-2">I want to keep a list of good advice I've received from various friends and mentors. Please let me know if you have recommendations (especially since I'm doing a horrible job at gender balance here)!</p>
+                  <ul class="list-disc pl-5 space-y-2 mb-4">
+                      <li>The most important points: Value (and protect) your time, the power of writing, and clarity of thought. Be kind.</li>
+                      <li>
+                          PhD can be intense and/or rewarding. It's a very personal journey but you're very likely not alone. In case you want to hear from some fellow PhD students/graduates, here's some advice by
+                          <a href="https://karlstratos.com/student.php" target="_blank" class="hover:underline text-link">Karl Stratos</a>,
+                          <a href="https://home.ttic.edu/~kgimpel/etc/phd-advice.pdf" target="_blank" class="hover:underline text-link">Kevin Gimpel</a>,
+                          <a href="https://matt.might.net/articles/phd-school-in-pictures/" target="_blank" class="hover:underline text-link">Matt Might</a>,
+                          <a href="https://benchugg.com/writing/phd-thoughts/" target="_blank" class="hover:underline text-link">Ben Chugg</a>.
+                      </li>
+                      <li>
+                          Research advice by
+                          <a href="https://www.cs.utexas.edu/~dahlin/bookshelf/hamming.html" target="_blank" class="hover:underline text-link">R. W. Hamming</a>,
+                          <a href="https://terrytao.wordpress.com/career-advice/" target="_blank" class="hover:underline text-link">Terence Tao</a>,
+                          <a href="https://www.youtube.com/watch?v=Unzc731iCUY" target="_blank" class="hover:underline text-link">Patrick Winston</a> (how to speak),
+                          <a href="https://people.csail.mit.edu/moitra/docs/Let3.pdf" target="_blank" class="hover:underline text-link">Ankur Moitra</a> (how to do theory),
+                          <a href="https://www.stat.cmu.edu/~aramdas/checklists/reading-tips.pdf" target="_blank" class="hover:underline text-link">Aaditya Ramdas</a> (how to read papers),
+                          <a href="https://www.mit.edu/~jnt/Papers/R-20-write-v5.pdf" target="_blank" class="hover:underline text-link">John N. Tsitsiklis</a> (how to write technical contents).
+                          <a href="https://let-all.com/" target="_blank" class="hover:underline text-link">LeT-All</a> also has nice advice on various topics from multiple years!
+                      </li>
+                      <li>
+                        Why theory/math? <a href="https://www.youtube.com/watch?v=YoL3LfY3ogg" target="_blank" class="hover:underline text-link">Talk</a> by Tim Gowers.
+                      </li>
+                  </ul>
+                  <p class="mt-4">
+                      <strong>Random.</strong> Some photos of <a href="https://photos.app.goo.gl/4Eumf3wiYx8HAYs97" target="_blank" class="hover:underline text-link">places I've lived</a> and <a href="https://photos.app.goo.gl/uRKi3QWaaikRVW3x6" target="_blank" class="hover:underline text-link">furry friends</a> I met along the way.
+                      A <a href="https://clarabing.github.io/connections/" target="_blank" class="hover:underline text-link">Connections</a> game for our wedding. <br>
+                      (More to be continued :))
+                  </p>
+              </div>
+          </section>
 
+    </main>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script>
+        // Scroll Spy Logic: Highlights sidebar links based on scroll position
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px', // Active when section is near top of viewport
+                threshold: 0
+            };
 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            link.classList.remove('text-gray-900');
+                            link.classList.add('text-gray-600');
+                        });
+                        
+                        // Add active class to current section link
+                        const id = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                            activeLink.classList.remove('text-gray-600');
+                            activeLink.classList.add('text-gray-900');
+                        }
+                    }
+                });
+            }, observerOptions);
 
-
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
-
 </html>
-
-
-
