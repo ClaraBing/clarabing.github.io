@@ -25,8 +25,8 @@
             /* Current: Blue (59, 130, 246) */
             /* Example: Teal (0, 128, 128) | Purple (147, 51, 234) */
             --main-rgb: 59, 130, 246;
-            --main-skyblue: #87ceeb;
-            --main-blue: #3baaee;
+            --main-skyblue: #61a8c5;
+            --main-blue: #369ddd;
             --main-darkblue: #2170b5;
         }
         
@@ -98,13 +98,15 @@
     <aside class="w-full md:w-80 bg-white shadow-lg flex-shrink-0 flex flex-col z-20 md:h-screen md:sticky md:top-0">
         <div class="p-8 flex flex-col items-center text-center overflow-y-auto">
             
-            <!-- Profile Image -->
+            <!-- Profile Image Container -->
             <div class="relative w-40 h-40 mb-6 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm">
-                <img src="pics/bingbin_Oct_2025.jpg" 
-                     alt="Bingbin Liu" 
-                     class="w-full h-full object-cover"
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Bingbin+Liu&size=256&background=random';">
-            </div>
+              <!-- Added ID="profile-pic" to target this with JavaScript -->
+              <img id="profile-pic" 
+                   src="pics/bingbin_Oct_2025.jpg" 
+                   alt="Bingbin Liu" 
+                   class="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                   onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Bingbin+Liu&size=256&background=random';">
+          </div>
 
             <!-- Name & Title -->
             <h1 class="text-2xl font-bold text-gray-900 mb-1">Bingbin Liu</h1>
@@ -645,44 +647,59 @@
 
     </main>
 
+
     <script>
-        // Scroll Spy Logic: Highlights sidebar links based on scroll position
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -60% 0px', // Active when section is near top of viewport
-                threshold: 0
-            };
+      // --- RANDOM PHOTO LOGIC ---
+      // Add your file paths here!
+      const profilePhotos = [
+          'pics/bingbin_Oct_2025.jpg',
+          'pics/bingbin_floe_short.png', // REPLACE with your 2nd photo filename
+      ];
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Remove active class from all links
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            link.classList.remove('text-gray-900');
-                            link.classList.add('text-gray-600');
-                        });
-                        
-                        // Add active class to current section link
-                        const id = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                        if (activeLink) {
-                            activeLink.classList.add('active');
-                            activeLink.classList.remove('text-gray-600');
-                            activeLink.classList.add('text-gray-900');
-                        }
-                    }
-                });
-            }, observerOptions);
+      document.addEventListener('DOMContentLoaded', () => {
+          // Pick a random photo
+          const randomPhoto = profilePhotos[Math.floor(Math.random() * profilePhotos.length)];
+          const imgElement = document.getElementById('profile-pic');
+          
+          if (imgElement) {
+              imgElement.src = randomPhoto;
+          }
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
+          // --- SCROLL SPY LOGIC ---
+          const sections = document.querySelectorAll('section');
+          const navLinks = document.querySelectorAll('.nav-link');
+          
+          const observerOptions = {
+              root: null,
+              rootMargin: '-20% 0px -60% 0px', 
+              threshold: 0
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      navLinks.forEach(link => {
+                          link.classList.remove('active');
+                          link.classList.remove('text-gray-900');
+                          link.classList.add('text-gray-600');
+                      });
+                      
+                      const id = entry.target.getAttribute('id');
+                      const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                      if (activeLink) {
+                          activeLink.classList.add('active');
+                          activeLink.classList.remove('text-gray-600');
+                          activeLink.classList.add('text-gray-900');
+                      }
+                  }
+              });
+          }, observerOptions);
+
+          sections.forEach(section => {
+              observer.observe(section);
+          });
+      });
+  </script>
+
 </body>
 </html>
