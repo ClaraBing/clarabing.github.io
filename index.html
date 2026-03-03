@@ -653,12 +653,33 @@
       // Add your file paths here!
       const profilePhotos = [
           'pics/bingbin_Oct_2025.jpg',
-          'pics/bingbin_floe_short.png', // REPLACE with your 2nd photo filename
+          'pics/bingbin_floe_short.png',
+          'pics/Stitch_and_me.png'
       ];
+
+      function getWeightedRandomItem(items, probabilities) {
+        let r = Math.random();
+        
+        for (let i = 0; i < items.length; i++) {
+          if (r < probabilities[i]) {
+            return items[i];
+          }
+          r -= probabilities[i];
+        }
+        
+        // Fallback in case of floating point rounding errors
+        return items[items.length - 1]; 
+      }
+
 
       document.addEventListener('DOMContentLoaded', () => {
           // Pick a random photo
-          const randomPhoto = profilePhotos[Math.floor(Math.random() * profilePhotos.length)];
+          // const randomPhoto = profilePhotos[Math.floor(Math.random() * profilePhotos.length)];
+          // const imgElement = document.getElementById('profile-pic');
+
+          // Sample with given probabilities
+          const probabilities = [0.5, 0.25, 0.25];
+          const randomPhoto = getWeightedRandomItem(profilePhotos, probabilities);
           const imgElement = document.getElementById('profile-pic');
           
           if (imgElement) {
