@@ -163,7 +163,7 @@
             
             <div class="prose max-w-none text-gray-700 space-y-4">
                 <p>
-                    Welcome to my website! :) I am a postdoc research fellow at <a href="https://kempnerinstitute.harvard.edu/" target="_blank" class="hover:underline text-link">the Kempner Institute</a> at Harvard University.
+                    Welcome to my website! :) I am a postdoc research fellow at <a href="https://kempnerinstitute.harvard.edu/" target="_blank" class="hover:underline text-link">the Kempner Institute</a> at Harvard University, working closely with the <a href='https://mlfoundations.org/' target="_blank" class="hover:underline text-link"> ML Foundations group</a>.
                     My research aims to make machine learning methods more efficient and accessible.
                     Most recently, I'm particularly interested in understanding how various inductive biases (from data usage, training algorithms, and architecture) affect training efficiency and inference cost.
                     I'm broadly interested in bridging theoretical and empirical/scientific understanding of machine learning, often drawing insights from <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank" class="hover:underline text-link">synthetic "sandbox" settings</a> (<a href="files/sandbox_for_blackbox_draft.pdf" target="_blank" class="hover:underline text-link">write-up</a>).
@@ -191,6 +191,30 @@
 
             <div class="space-y-8">
 
+                <!-- small-vs-large gap -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                  <div class="sm:w-32 flex-shrink-0">
+                      <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                  </div>
+                  <div>
+                      <h4 class="text-lg font-bold text-gray-900 leading-tight">
+                        Less Data, Faster Training: repeating smaller datasets speeds up learning via sampling biases
+                      </h4>
+                      <p class="text-gray-700 mt-1">
+                        <a href="https://ljw0105.github.io/" target="_blank" class="hover:underline text-author">Jingwen Liu</a>,
+                        <a href="https://www.ezraedelman.com/" target="_blank" class="hover:underline text-author">Ezra Edelman</a>,
+                        <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                        Bingbin Liu
+                      </p>
+                      <p class="text-sm text-gray-500 mt-1 italic">ICML26.
+                      Contributed talk at  <a href="https://scienceofdlworkshop.github.io/2026/" target="_blank" class="hover:underline text-link">Sci4DL</a>.
+                      </p>
+                      <div class="mt-2 text-base">
+                          <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                      </div>
+                  </div>
+                </div>
+                            
                 <!-- GRACE -->
                 <div class="flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
@@ -205,7 +229,7 @@
                             <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
                             <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
                         </p>
-                        <p class="text-sm text-gray-500 mt-1 italic">In submission</p>
+                        <p class="text-sm text-gray-500 mt-1 italic">ICLR26</p>
                         <div class="mt-2 text-base">
                             <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
                         </div>
@@ -236,25 +260,48 @@
 
                 <!-- Progressive distillation -->
                 <div class="flex flex-col sm:flex-row gap-6">
-                    <div class="sm:w-32 flex-shrink-0">
-                        <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
-                        <p class="text-gray-700 mt-1">
-                            <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
-                            Bingbin Liu*,
-                            <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
-                            <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
-                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
-                        </p>
-                        <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
-                        <div class="mt-2 text-base">
-                            <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
-                        </div>
-                    </div>
-                </div>
+                  <div class="sm:w-32 flex-shrink-0">
+                      <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                  </div>
+                  <div>
+                      <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
+                      <p class="text-gray-700 mt-1">
+                          <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
+                          Bingbin Liu*,
+                          <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                          <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
+                          <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                      </p>
+                      <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
+                      <div class="mt-2 text-base">
+                          <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                          <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                      </div>
+                  </div>
+              </div>
+
+                <!-- TinyGSM -->
+                <div class="flex flex-col sm:flex-row gap-6">
+                  <div class="sm:w-32 flex-shrink-0">
+                      <img src="pics/TinyGSM.png" alt="TinyGSM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                  </div>
+                  <div>
+                      <h4 class="text-lg font-bold text-gray-900 leading-tight">Tinygsm: achieving> 80% on gsm8k with small language models</h4>
+                      <p class="text-gray-700 mt-1">
+                          Bingbin Liu,
+                          <a href="http://sbubeck.com/" target="_blank" class="hover:underline text-author">Sebastien Bubeck</a>,
+                          <a href="https://scholar.google.com/citations?user=G8a4FrwAAAAJ&hl=en" target="_blank" class="hover:underline text-author">Ronen Eldan</a>,
+                          <a href="https://www.microsoft.com/en-us/research/people/jakul/" target="_blank" class="hover:underline text-author">Janardhan Kulkarni</a>,
+                          <a href="https://scholar.google.com/citations?user=aHtfItQAAAAJ&hl=en" target="_blank" class="hover:underline text-author">Yuanzhi Li</a>,
+                          <a href="https://scholar.google.com/citations?user=r8RQcFQAAAAJ&hl=en" target="_blank" class="hover:underline text-author">Anh Nguyen</a>,
+                          <a href="https://oden.utexas.edu/people/directory/rachel--ward/" target="_blank" class="hover:underline text-author">Rachel Ward</a>,
+                          <a href="https://www.yi-zhang.me/" target="_blank" class="hover:underline text-author">Yi Zhang</a>,
+                      </p>
+                      <div class="mt-2 text-base">
+                          <a href="https://arxiv.org/abs/2312.09241" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                      </div>
+                  </div>
+              </div>
 
                 <!-- Dyck -->
                 <div class="flex flex-col sm:flex-row gap-6">
