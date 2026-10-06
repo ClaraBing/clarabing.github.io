@@ -69,6 +69,33 @@
         section {
             scroll-margin-top: 2rem;
         }
+
+        /* Publications toggle: Selected Papers / Show All */
+        .paper-toggle {
+            display: flex;
+            align-items: baseline;
+        }
+        .paper-toggle__btn {
+            padding: 0;
+            border: none;
+            background: none;
+            color: #9ca3af; /* gray-400 */
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .paper-toggle__btn:hover,
+        .paper-toggle__btn--active {
+            color: #1f2937; /* gray-800 */
+        }
+        .paper-toggle__sep {
+            margin: 0 0.5rem;
+            color: #9ca3af;
+        }
+        #publications.show-selected #papers-all,
+        #publications:not(.show-selected) #papers-selected {
+            display: none;
+        }
     </style>
 
     <!-- Google Analytics -->
@@ -189,10 +216,217 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Research</h2>
             <!-- <h3 class="text-lg font-semibold text-gray-500 mb-6 uppercase tracking-wider">Preprints and Publications</h3> -->
 
-            <div class="space-y-8">
+            <!-- "Selected Papers" and "Show All" are two separate lists below; edit each independently -->
+            <h3 class="paper-toggle text-lg mb-6">
+                <button class="paper-toggle__btn" onclick="showSelected()">Selected Papers</button>
+                <span class="paper-toggle__sep">/</span>
+                <button class="paper-toggle__btn" onclick="showAll()">Show All</button>
+            </h3>
+
+            <div id="publications">
+
+            <!-- SELECTED PAPERS -->
+            <div id="papers-selected" class="space-y-12">
+
+                <!-- Group: Beyond distillation -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-normal text-gray-800">Beyond distillation</h4>
+
+                    <!-- small-vs-large gap -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                      <div class="sm:w-32 flex-shrink-0">
+                          <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                      </div>
+                      <div>
+                          <h4 class="text-lg font-bold text-gray-900 leading-tight">
+                            Less Data, Faster Training: repeating smaller datasets speeds up learning via sampling biases
+                          </h4>
+                          <p class="text-gray-700 mt-1">
+                            <a href="https://ljw0105.github.io/" target="_blank" class="hover:underline text-author">Jingwen Liu</a>,
+                            <a href="https://www.ezraedelman.com/" target="_blank" class="hover:underline text-author">Ezra Edelman</a>,
+                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                            Bingbin Liu
+                          </p>
+                          <p class="text-sm text-gray-500 mt-1 italic">ICML26.
+                          Contributed talk at  <a href="https://scienceofdlworkshop.github.io/2026/" target="_blank" class="hover:underline text-link">Sci4DL</a>.
+                          </p>
+                          <div class="mt-2 text-base">
+                              <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!-- Adam or Gauss-Newton -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/Adam_or_GN.png" alt="Adam" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Adam or Gauss-Newton? A Comparative Study In Terms of Basis Alignment and SGD Noise</h4>
+                            <p class="text-gray-700 mt-1">
+                                Bingbin Liu,
+                                <a href="https://rachitbansal.github.io/" target="_blank" class="hover:underline text-author">Rachit Bansal</a>,
+                                <a href="https://depenm.github.io/" target="_blank" class="hover:underline text-author">Depen Morwani</a>,
+                                <a href="https://nikhilvyas.github.io/" target="_blank" class="hover:underline text-author">Nikhil Vyas</a>,
+                                <a href="https://dmelis.github.io/" target="_blank" class="hover:underline text-author">David Alvarez-Melis</a>,
+                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">Preprint</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2510.13680" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group: Improving knowledge distillation -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-normal text-gray-800">Improving knowledge distillation</h4>
+
+                    <!-- Progressive distillation -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                      <div class="sm:w-32 flex-shrink-0">
+                          <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                      </div>
+                      <div>
+                          <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
+                          <p class="text-gray-700 mt-1">
+                              <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
+                              Bingbin Liu*,
+                              <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                              <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
+                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                          </p>
+                          <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
+                          <div class="mt-2 text-base">
+                              <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                              <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                          </div>
+                      </div>
+                  </div>
+
+                    <!-- GRACE -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">In Good GRACES: Principled Teacher Selection for Knowledge Distillation</h4>
+                            <p class="text-gray-700 mt-1">
+                                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>,
+                                Bingbin Liu,
+                                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
+                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">ICLR26</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group: Capability and limitations of Transformer reasoning -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-normal text-gray-800">Capability and limitations of Transformer reasoning</h4>
+
+                    <!-- Automata -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/automata.png" alt="Automata" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Transformers Learn Shortcuts to Automata</h4>
+                            <p class="text-gray-700 mt-1">
+                                Bingbin Liu,
+                                <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
+                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                                <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
+                                <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">ICLR 2023 (Oral)</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2210.10749" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                                <a href="https://openreview.net/forum?id=De4FYqjFueZ" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                                <a href="https://clarabing.github.io/shortcut_automata/" target="_blank" class="hover:underline text-link mr-3">[Project Page]</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flipflop -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/flipflop.png" alt="Flipflop" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Exposing Attention Glitches with Flip-Flop Language Modeling</h4>
+                            <p class="text-gray-700 mt-1">
+                                Bingbin Liu,
+                                <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
+                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                                <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
+                                <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2023 (Spotlight)</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2306.00946" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group: Self-supervised learning -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-normal text-gray-800">Self-supervised learning</h4>
+
+                    <!-- eNCE -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/density_chasm_3d.png" alt="eNCE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Analyzing and improving the optimization landscape of noise-contrastive estimation</h4>
+                            <p class="text-gray-700 mt-1">
+                                Bingbin Liu, <a href="http://www.cs.cmu.edu/~elan/" target="_blank" class="hover:underline text-author">Elan Rosenfeld</a>,
+                                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
+                                <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">ICLR 2022 (Spotlight)</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2110.11271" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HMM -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/masked_HMM.png" alt="HMM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Masked prediction tasks: a parameter identifiability view</h4>
+                            <p class="text-gray-700 mt-1">
+                                Bingbin Liu,
+                                <a href="https://www.cs.columbia.edu/~djhsu/" target="_blank" class="hover:underline text-author">Daniel Hsu</a>,
+                                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
+                                <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2022</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2202.09305" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ALL PAPERS -->
+            <div id="papers-all" class="space-y-8">
 
                 <!-- small-vs-large gap -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-32 flex-shrink-0">
                       <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                   </div>
@@ -216,7 +450,7 @@
                 </div>
                             
                 <!-- GRACE -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -237,7 +471,7 @@
                 </div>
 
                 <!-- Adam or Gauss-Newton -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/Adam_or_GN.png" alt="Adam" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -259,7 +493,7 @@
                 </div>
 
                 <!-- Progressive distillation -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-32 flex-shrink-0">
                       <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                   </div>
@@ -281,7 +515,7 @@
               </div>
 
                 <!-- TinyGSM -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-32 flex-shrink-0">
                       <img src="pics/TinyGSM.png" alt="TinyGSM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                   </div>
@@ -304,7 +538,7 @@
               </div>
 
                 <!-- Dyck -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/Dyck.png" alt="Dyck" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -324,7 +558,7 @@
                 </div>
 
                 <!-- Flipflop -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/flipflop.png" alt="Flipflop" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -345,7 +579,7 @@
                 </div>
 
                 <!-- Automata -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/automata.png" alt="Automata" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -368,7 +602,7 @@
                 </div>
                 
                 <!-- HMM -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/masked_HMM.png" alt="HMM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -388,7 +622,7 @@
                 </div>
 
                 <!-- eNCE -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/density_chasm_3d.png" alt="eNCE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -407,7 +641,7 @@
                 </div>
 
                 <!-- SDE -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/diffusion.png" alt="SDE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -426,7 +660,7 @@
                 </div>
 
                 <!-- Boosting -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/boosting.png" alt="Boosting" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -445,7 +679,7 @@
                 </div>
 
                 <!-- STIP -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/STIP.jpg" alt="STIP" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -468,7 +702,7 @@
                 </div>
                 
                 <!-- Digital Medicine -->
-                 <div class="flex flex-col sm:flex-row gap-6">
+                 <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/ML4H18.png" alt="Medicine" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -493,7 +727,7 @@
                 </div>
 
                 <!-- TMN -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/ECCV18_TMN.jpg" alt="TMN" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -517,7 +751,7 @@
                 </div>
                 
                 <!-- DDEAP -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/NIPS18_DDPAE.png" alt="DDEAP" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -540,7 +774,7 @@
                 </div>
 
                 <!-- MLHC -->
-                <div class="flex flex-col sm:flex-row gap-6">
+                <div class="paper flex flex-col sm:flex-row gap-6">
                     <div class="sm:w-32 flex-shrink-0">
                         <img src="pics/MLHC18_3d.png" alt="MLHC" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
                     </div>
@@ -563,6 +797,8 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
 
             </div>
         </section>
@@ -718,6 +954,17 @@
 
 
     <script>
+      // --- PUBLICATIONS TOGGLE (Selected Papers / Show All) ---
+      function setPaperView(selected) {
+          const pub = document.getElementById('publications');
+          const btns = document.querySelectorAll('.paper-toggle__btn');
+          pub.classList.toggle('show-selected', selected);
+          btns[0].classList.toggle('paper-toggle__btn--active', selected);
+          btns[1].classList.toggle('paper-toggle__btn--active', !selected);
+      }
+      function showSelected() { setPaperView(true); }
+      function showAll() { setPaperView(false); }
+
       // --- RANDOM PHOTO LOGIC ---
       // Add your file paths here!
       const profilePhotos = [
@@ -742,6 +989,9 @@
 
 
       document.addEventListener('DOMContentLoaded', () => {
+          // Default to "Selected Papers"
+          setPaperView(true);
+
           // Pick a random photo
           // const randomPhoto = profilePhotos[Math.floor(Math.random() * profilePhotos.length)];
           // const imgElement = document.getElementById('profile-pic');
