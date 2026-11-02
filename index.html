@@ -219,118 +219,25 @@
 
             <!-- "Selected Papers" and "Show All" are two separate lists below; edit each independently -->
             <h3 class="paper-toggle text-lg mb-6">
-                <button class="paper-toggle__btn" onclick="showSelected()">Selected Papers</button>
+                <button class="text-xl paper-toggle__btn" onclick="showSelected()">Small-scale frontier</button>
                 <span class="paper-toggle__sep">/</span>
-                <button class="paper-toggle__btn" onclick="showAll()">Show All</button>
+                <button class="text-xl paper-toggle__btn" onclick="showAll()">Chronological</button>
             </h3>
 
             <div id="publications">
 
             <!-- SELECTED PAPERS -->
             <div id="papers-selected" class="space-y-12">
-
-                <!-- Group: Beyond distillation -->
-                <div class="space-y-6">
-                    <h4 class="text-xl font-normal text-gray-800">Efficient learning beyond distillation</h4>
-
-                    <!-- small-vs-large gap -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                      <div class="sm:w-32 flex-shrink-0">
-                          <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                      </div>
-                      <div>
-                          <h4 class="text-lg font-bold text-gray-900 leading-tight">
-                            Less Data, Faster Training: repeating smaller datasets speeds up learning via sampling biases
-                          </h4>
-                          <p class="text-gray-700 mt-1">
-                            <a href="https://ljw0105.github.io/" target="_blank" class="hover:underline text-author">Jingwen Liu</a>,
-                            <a href="https://www.ezraedelman.com/" target="_blank" class="hover:underline text-author">Ezra Edelman</a>,
-                            <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
-                            Bingbin Liu
-                          </p>
-                          <p class="text-sm text-gray-500 mt-1 italic">ICML26.
-                          Contributed talk at  <a href="https://scienceofdlworkshop.github.io/2026/" target="_blank" class="hover:underline text-link">Sci4DL</a>.
-                          </p>
-                          <div class="mt-2 text-base">
-                              <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                          </div>
-                      </div>
-                    </div>
-
-                    <!-- Adam or Gauss-Newton -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/Adam_or_GN.png" alt="Adam" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Adam or Gauss-Newton? A Comparative Study In Terms of Basis Alignment and SGD Noise</h4>
-                            <p class="text-gray-700 mt-1">
-                                Bingbin Liu,
-                                <a href="https://rachitbansal.github.io/" target="_blank" class="hover:underline text-author">Rachit Bansal</a>,
-                                <a href="https://depenm.github.io/" target="_blank" class="hover:underline text-author">Depen Morwani</a>,
-                                <a href="https://nikhilvyas.github.io/" target="_blank" class="hover:underline text-author">Nikhil Vyas</a>,
-                                <a href="https://dmelis.github.io/" target="_blank" class="hover:underline text-author">David Alvarez-Melis</a>,
-                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">Preprint</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2510.13680" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Group: Improving knowledge distillation -->
-                <div class="space-y-6">
-                    <h4 class="text-xl font-normal text-gray-800">Efficient learning with knowledge distillation</h4>
-
-                    <!-- Progressive distillation -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                      <div class="sm:w-32 flex-shrink-0">
-                          <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                      </div>
-                      <div>
-                          <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
-                          <p class="text-gray-700 mt-1">
-                              <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
-                              Bingbin Liu*,
-                              <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
-                              <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
-                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
-                          </p>
-                          <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
-                          <div class="mt-2 text-base">
-                              <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                              <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
-                          </div>
-                      </div>
-                  </div>
-
-                    <!-- GRACE -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">In Good GRACES: Principled Teacher Selection for Knowledge Distillation</h4>
-                            <p class="text-gray-700 mt-1">
-                                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>,
-                                Bingbin Liu,
-                                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
-                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
-                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">ICLR26</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <p class="text-gray-700 mt-1">
+                    Model performances improve with scale, but the scaling curve has been shifting as our understanding and methods advance,
+                    where small models now can achieve performance once requiring far larger sizes. <br>
+                    <strong><em>How much further can we push the small-scale frontier?</em></strong>
+                </p>
 
                 <!-- Group: Capability and limitations of Transformer reasoning -->
                 <div class="space-y-6">
-                    <h4 class="text-xl font-normal text-gray-800">Capability and limitations of Transformer reasoning</h4>
+                    <h4 class="text-lg font-normal text-gray-800">1. Representational power: models need not be large in theory.</h4>
 
                     <!-- Automata -->
                     <div class="paper flex flex-col sm:flex-row gap-6">
@@ -354,7 +261,97 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- Group: Improving knowledge distillation -->
+                <div class="space-y-6">
+                    <h4 class="text-lg font-normal text-gray-800">2. Learning remains challenging in practice -- how to improve learning efficiency?</h4>
+
+                    <p class="text-gray-700 mt-1 italic">
+                        <strong>Data</strong> is important for learning efficiency.
+                        For example, <a href="https://arxiv.org/abs/2312.09241" target="_blank" class="hover:underline text-link">synthetic data</a> can be very effective,
+                        which can be viewed as a form of knowledge distillation.
+                    </p>               
+
+                    <p class="text-gray-700 mt-1 italic">
+                        For knowledge distillation, teacher choice matters and should be student-dependent.
+                    </p>
+
+                    <!-- Progressive distillation -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                      <div class="sm:w-32 flex-shrink-0">
+                          <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                      </div>
+                      <div>
+                          <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
+                          <p class="text-gray-700 mt-1">
+                              <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
+                              Bingbin Liu*,
+                              <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                              <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
+                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                          </p>
+                          <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (Oral)</p>
+                          <div class="mt-2 text-base">
+                              <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                              <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!-- GRACE -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">In Good GRACES: Principled Teacher Selection for Knowledge Distillation</h4>
+                            <p class="text-gray-700 mt-1">
+                                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>,
+                                Bingbin Liu,
+                                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
+                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
+                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">ICLR26</p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 mt-1 italic">
+                        Data usage itself also effects efficiency: training with less data can improve compute efficiency.
+                    </p>
+
+                    <!-- small-vs-large gap -->
+                    <div class="paper flex flex-col sm:flex-row gap-6">
+                        <div class="sm:w-32 flex-shrink-0">
+                            <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900 leading-tight">
+                              Less Data, Faster Training: repeating smaller datasets speeds up learning via sampling biases
+                            </h4>
+                            <p class="text-gray-700 mt-1">
+                              <a href="https://ljw0105.github.io/" target="_blank" class="hover:underline text-author">Jingwen Liu</a>,
+                              <a href="https://www.ezraedelman.com/" target="_blank" class="hover:underline text-author">Ezra Edelman</a>,
+                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
+                              Bingbin Liu
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1 italic">ICML26.
+                            Contributed talk at  <a href="https://scienceofdlworkshop.github.io/2026/" target="_blank" class="hover:underline text-link">Sci4DL</a>.
+                            </p>
+                            <div class="mt-2 text-base">
+                                <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+
+                <div class="space-y-6">
+                    <h4 class="text-lg font-normal text-gray-800">3. With strong models, errors at the tail can be revealing and should be mitigated.</h4>
                     <!-- Flipflop -->
                     <div class="paper flex flex-col sm:flex-row gap-6">
                         <div class="sm:w-32 flex-shrink-0">
@@ -377,49 +374,6 @@
                     </div>
                 </div>
 
-                <!-- Group: Self-supervised learning -->
-                <div class="space-y-6">
-                    <h4 class="text-xl font-normal text-gray-800">Theoretical understanding of self-supervised learning</h4>
-
-                    <!-- eNCE -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/density_chasm_3d.png" alt="eNCE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Analyzing and improving the optimization landscape of noise-contrastive estimation</h4>
-                            <p class="text-gray-700 mt-1">
-                                Bingbin Liu, <a href="http://www.cs.cmu.edu/~elan/" target="_blank" class="hover:underline text-author">Elan Rosenfeld</a>,
-                                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
-                                <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">ICLR 2022 (Spotlight)</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2110.11271" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HMM -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/masked_HMM.png" alt="HMM" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Masked prediction tasks: a parameter identifiability view</h4>
-                            <p class="text-gray-700 mt-1">
-                                Bingbin Liu,
-                                <a href="https://www.cs.columbia.edu/~djhsu/" target="_blank" class="hover:underline text-author">Daniel Hsu</a>,
-                                <a href="http://www.cs.cmu.edu/~pradeepr/" target="_blank" class="hover:underline text-author">Pradeep Ravikumar</a>,
-                                <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2022</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2202.09305" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
@@ -466,6 +420,7 @@
                           Bingbin Liu
                         </p>
                         <p class="text-sm text-gray-500 mt-1 italic">NeurIPS26.
+                            Contributed talk at <a href="https://spigmworkshopv3.github.io/" target="_blank" class="hover:underline text-link">SPIGM</a>.
                         </p>
                         <div class="mt-2 text-base">
                             <a href="https://arxiv.org/abs/2605.10019" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
