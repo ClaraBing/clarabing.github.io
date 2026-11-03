@@ -196,8 +196,8 @@
             <div class="prose max-w-none text-gray-700 space-y-4">
                 <p>
                     Welcome to my website! :) I am a postdoc research fellow at <a href="https://kempnerinstitute.harvard.edu/" target="_blank" class="hover:underline text-link">the Kempner Institute</a> at Harvard University, working closely with the <a href='https://mlfoundations.org/' target="_blank" class="hover:underline text-link"> ML Foundations group</a>.
-                    My research focuses on <b>scientific understanding</b> of machine learning, aiming to make machine learning methods more efficient and accessible.
-                    I'm curious about <a href="https://sites.google.com/view/moss-colm-2026/" target="_blank" class="hover:underline text-link">methods and opportunities at small scales</a>, often drawing insights from <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank" class="hover:underline text-link">synthetic "sandbox" settings</a> (<a href="files/sandbox_for_blackbox_draft.pdf" target="_blank" class="hover:underline text-link">write-up</a>) that isolate particular aspects of complex phenomena.
+                    My research focuses on <b>scientific understanding of machine learning</b>, especially towards understanding and realizing <a href="https://sites.google.com/view/moss-colm-2026/" target="_blank" class="hover:underline text-link">methods and opportunities at <strong>small scales</strong></a>. 
+                    My work uses a combination of theory and controlled experiments, often drawing insights from <a href="https://capricious-comb-7a3tbssph.notion.site/" target="_blank" class="hover:underline text-link">synthetic "sandbox" settings</a> (<a href="files/sandbox_for_blackbox_draft.pdf" target="_blank" class="hover:underline text-link">write-up</a>) that isolate particular aspects of complex phenomena.
                     Most recently, I'm particularly interested in understanding how various inductive biases (from data usage, training algorithms, and architecture) affect training efficiency and inference cost.
                     
                 </p>
@@ -226,7 +226,7 @@
             <h3 class="paper-toggle text-lg mb-6">
                 <button class="text-xl paper-toggle__btn" onclick="showSelected()">Small-scale frontier</button>
                 <span class="paper-toggle__sep">/</span>
-                <button class="text-xl paper-toggle__btn" onclick="showAll()">Chronological</button>
+                <button class="text-xl paper-toggle__btn" onclick="showAll()">All publications</button>
             </h3>
 
             <div id="publications">
@@ -234,156 +234,59 @@
             <!-- SELECTED PAPERS -->
             <div id="papers-selected" class="space-y-12">
                 
-                <p class="text-gray-700 mt-1">
-                    Model performances improve with scale, but the scaling curve has been shifting as our understanding and methods advance,
-                    where small models now can achieve performance once requiring far larger sizes. <br>
-                    <strong><em>How much further can we push the small-scale frontier?</em></strong>
-                </p>
+                Model performance improves with scale, but the scaling frontier keeps shifting as our understanding and methods advance.
+                Small models can now achieve performance that once requires much larger ones. <br>
+                A natural question is: <strong><em>How much further can we push the small-scale frontier?</em></strong><br>
+                Simply scaling down frontier-scale recipes likely won't suffice, and we need deeper understanding on the fundamental limits of representation and learning efficiency to guide algorithm design.<br>
+                <br>
+                My research pursues this small-scale agenda in three directions.
 
                 <!-- Group: Capability and limitations of Transformer reasoning -->
-                <div class="space-y-6">
-                    <h4 class="text-lg font-normal text-gray-800">1. Representational power: models need not be large in theory.</h4>
+                <div class="space-y-3">
+                    <h4 class="text-lg font-normal text-gray-800">1. Understanding representational limits.</h4>
 
-                    <p class="text-gray-700 mt-1 italic">
-                        Shallow, parallel models can be powerful at sequential reasoning,
-                        and the number of feasible solutions can be <a href="https://arxiv.org/abs/2312.01429" target="_blank" class="hover:underline text-link">infinitely many</a>.
+                    <p class="text-gray-700 mt-1">
+                        The first step is to ensure that the capabilities we seek are theoretically possible.
+                        We show that <a href="https://arxiv.org/abs/2210.10749" target="_blank" class="hover:underline text-link">shallow, parallel models</a> can be powerful at sequential reasoning (<a href="https://clarabing.github.io/shortcut_automata/" target="_blank" class="hover:underline text-link">project page</a>),
+                        and that some problems admit <a href="https://arxiv.org/abs/2312.01429" target="_blank" class="hover:underline text-link">infinitely many</a> feasible solutions (which also highlights challenges for interpretability).
+                        There are encouraging empirical signals too: models trained on <a href="https://arxiv.org/abs/2312.09241" target="_blank" class="hover:underline text-link">proper synthetic data</a> can match the performance of much larger models.
+                        Together, these findings suggest that models <em>far smaller</em> than today's may be possible and worth pursuing.
                     </p>
-                    <!-- Automata -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/automata.png" alt="Automata" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Transformers Learn Shortcuts to Automata</h4>
-                            <p class="text-gray-700 mt-1">
-                                Bingbin Liu,
-                                <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
-                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
-                                <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
-                                <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">ICLR 2023 (<strong class="paper-highlight">Oral</strong>)</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2210.10749" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                                <a href="https://openreview.net/forum?id=De4FYqjFueZ" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
-                                <a href="https://clarabing.github.io/shortcut_automata/" target="_blank" class="hover:underline text-link mr-3">[Project Page]</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Group: Improving knowledge distillation -->
-                <div class="space-y-6">
-                    <h4 class="text-lg font-normal text-gray-800">2. Learning remains challenging in practice -- how to improve learning efficiency?</h4>
+                <div class="space-y-3">
+                    <h4 class="text-lg font-normal text-gray-800">2. Improving learning efficiency.</h4>
 
-                    <p class="text-gray-700 mt-1 italic">
-                        <strong>Data</strong> is important for learning efficiency.
-                        For example, <a href="https://arxiv.org/abs/2312.09241" target="_blank" class="hover:underline text-link">synthetic data</a> can be very effective,
-                        which can be viewed as a form of knowledge distillation.
+                    <p class="text-gray-700 mt-1">
+                        Even when small models have sufficient representational capacity, learning remains a practical bottleneck.
+                    </p>
+
+                    <p class="text-gray-700 mt-1">
+                        One promising approach is <strong>knowledge distillation</strong>, which allows small "student" model to benefit from the compute already invested in training large "teacher" models.
+                        However, effective distillation requires proper <em>teacher choice</em>.
+                        We show that learning from the right teachers can <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link">improve sample efficiency</a>,
+                        and propose a lightweight <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link">GRACE score</a> for teacher selection in LLM finetuning.
                     </p>               
 
-                    <p class="text-gray-700 mt-1 italic">
-                        For knowledge distillation, teacher choice matters and should be student-dependent.
+                    <p class="text-gray-700 mt-1">
+                        There are many other ways to improve learning efficiency beyond distillation.
+                        On the data side, we find that sometimes <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link">training with less data can improve compute efficiency</a>.
+                        When considering the optimization landscape, even small changes to the training objective can <a href="https://arxiv.org/abs/2110.11271" target="_blank" class="hover:underline text-link">drastically affect the convergence rate</a>,
+                        and <a href="https://arxiv.org/abs/2510.13680" target="_blank" class="hover:underline text-link">optimizer design</a> can make a substantial difference.
                     </p>
 
-                    <!-- Progressive distillation -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                      <div class="sm:w-32 flex-shrink-0">
-                          <img src="pics/progressive_distillation.png" alt="Progressive" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                      </div>
-                      <div>
-                          <h4 class="text-lg font-bold text-gray-900 leading-tight">Progressive distillation induces an implicit curriculum</h4>
-                          <p class="text-gray-700 mt-1">
-                              <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>*,
-                              Bingbin Liu*,
-                              <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
-                              <a href="https://www.andrejristeski.org/" target="_blank" class="hover:underline text-author">Andrej Risteski</a>,
-                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
-                          </p>
-                          <p class="text-sm text-gray-500 mt-1 italic">ICLR25 (<strong class="paper-highlight">Oral</strong>)</p>
-                          <div class="mt-2 text-base">
-                              <a href="https://arxiv.org/abs/2410.05464" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                              <a href="https://openreview.net/forum?id=wPMRwmytZe" target="_blank" class="hover:underline text-link mr-3">[OpenReview]</a>
-                          </div>
-                      </div>
-                    </div>
-
-                    <!-- GRACE -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/GRACE_wide.png" alt="GRACE" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">In Good GRACES: Principled Teacher Selection for Knowledge Distillation</h4>
-                            <p class="text-gray-700 mt-1">
-                                <a href="https://abhishekpanigrahi1996.github.io/" target="_blank" class="hover:underline text-author">Abhishek Panigrahi</a>,
-                                Bingbin Liu,
-                                <a href="https://www.cs.princeton.edu/~smalladi/" target="_blank" class="hover:underline text-author">Sadhika Malladi</a>,
-                                <a href="https://shamulent.github.io/" target="_blank" class="hover:underline text-author">Sham M. Kakade</a>,
-                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">ICLR26</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2511.02833" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="text-gray-700 mt-1 italic">
-                        Data usage itself also effects efficiency: training with less data can improve compute efficiency.
-                    </p>
-
-                    <!-- small-vs-large gap -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/small_vs_large_gap.png" alt="small_vs_large_gap" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">
-                              Less Data, Faster Training: repeating smaller datasets speeds up learning via sampling biases
-                            </h4>
-                            <p class="text-gray-700 mt-1">
-                              <a href="https://ljw0105.github.io/" target="_blank" class="hover:underline text-author">Jingwen Liu</a>,
-                              <a href="https://www.ezraedelman.com/" target="_blank" class="hover:underline text-author">Ezra Edelman</a>,
-                              <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
-                              Bingbin Liu
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">ICML26.
-                            <strong class="paper-highlight">Contributed talk</strong> at  <a href="https://scienceofdlworkshop.github.io/2026/" target="_blank" class="hover:underline text-link">Sci4DL</a>.
-                            </p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2605.20314" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                      </div>
                 </div>
 
 
-                <div class="space-y-6">
-                    <h4 class="text-lg font-normal text-gray-800">3. With strong models, errors at the tail can be revealing and should be mitigated.</h4>
-                    <!-- Flipflop -->
-                    <div class="paper flex flex-col sm:flex-row gap-6">
-                        <div class="sm:w-32 flex-shrink-0">
-                            <img src="pics/flipflop.png" alt="Flipflop" class="rounded shadow-sm w-full h-auto object-cover" onerror="this.style.display='none'">
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold text-gray-900 leading-tight">Exposing Attention Glitches with Flip-Flop Language Modeling</h4>
-                            <p class="text-gray-700 mt-1">
-                                Bingbin Liu,
-                                <a href="https://www.jordantash.com/" target="_blank" class="hover:underline text-author">Jordan T. Ash</a>,
-                                <a href="https://www.surbhigoel.com/" target="_blank" class="hover:underline text-author">Surbhi Goel</a>,
-                                <a href="https://people.cs.umass.edu/~akshay/" target="_blank" class="hover:underline text-author">Akshay Krishnamurthy</a>,
-                                <a href="https://cyrilzhang.com/" target="_blank" class="hover:underline text-author">Cyril Zhang</a>
-                            </p>
-                            <p class="text-sm text-gray-500 mt-1 italic">NeurIPS 2023 (<strong class="paper-highlight">Spotlight</strong>)</p>
-                            <div class="mt-2 text-base">
-                                <a href="https://arxiv.org/abs/2306.00946" target="_blank" class="hover:underline text-link mr-3">[arXiv]</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p class="text-gray-700 mt-1 italic">
-                        (Architectural fixes? Coming soon!)
+                <div class="space-y-3">
+                    <h4 class="text-lg font-normal text-gray-800">3. Closing the long-tail reliability gap.</h4>
+                    
+                    <p class="text-gray-700 mt-1">
+                        As models become stronger, errors at the tail can be more revealing than benchmark performance.
+                        We find that Transformers can exhibit <a href="https://arxiv.org/abs/2306.00946" target="_blank" class="hover:underline text-link">nontrivial tail errors</a> on a simple task representable by a single-layer model, despite achieving over 99% accuracy.
+                        We trace these errors to <em>architectural factors</em> and identify ways to mitigate them (coming soon!).
+                        Understanding and systematically eliminating such failures will be crucial for building reliable models.
                     </p>
                 </div>
 
@@ -829,6 +732,16 @@
             <h3 class="text-lg font-semibold text-gray-500 mb-6 uppercase tracking-wider">Talks</h3>
             <p class="text-gray-600 mb-2">
             
+            <text class="text-gray-600 mb-2 text-lg">Lifting the small-scale frontier</text>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li>
+                <strong>Understanding and Realizing the Potential of Smaller Models</strong> <br>
+                Talk at the <a href="https://publish.illinois.edu/ml-seminar/" target="_blank" class="hover:underline text-link">UIUC Machine Learning Seminar</a> at Fall 2026.
+                <br>
+                [<a href="files/talks/efficient_reasoning_UIUC_Bingbin.pdf" target="_blank" class="hover:underline text-link">Slides</a>]
+                </li>
+            </ul>
+
             <text class="text-gray-600 mb-2 text-lg">Learning from "sandboxes" </text>
             <ul class="list-disc pl-5 space-y-2 mb-4">
               <li>
@@ -953,11 +866,12 @@
                           <a href="https://www.stat.cmu.edu/~aramdas/checklists/reading-tips.pdf" target="_blank" class="hover:underline text-link">Aaditya Ramdas</a> (how to read papers),
                           <a href="https://www.mit.edu/~jnt/Papers/R-20-write-v5.pdf" target="_blank" class="hover:underline text-link">John N. Tsitsiklis</a> (how to write technical contents),
                           <a href="https://sigcommedu.cs.illinois.edu/advice/rexford_advice_facultyposn.html" target="_blank" class="hover:underline text-link">Jennifer Rexford</a> (how to land a faculty position, but the advice is more broadly applicable).
+                          <br>
                           <a href="https://let-all.com/" target="_blank" class="hover:underline text-link">LeT-All</a> also has nice advice on various topics from multiple years!
                       </li>
-                      <li>
+                      <!-- <li>
                         Why theory/math? <a href="https://www.youtube.com/watch?v=YoL3LfY3ogg" target="_blank" class="hover:underline text-link">Talk</a> by Tim Gowers.
-                      </li>
+                      </li> -->
                       <li>
                         How to contribute to the society positively? So many ways! I'm particularly interested in (AI for) education (<a href="https://dhruvmadeka.com/post/llms_education/" target="_blank" class="hover:underline text-link">Dhruv Madeka's post</a>).
                       </li>
